@@ -8,15 +8,22 @@
 import Foundation
 import CoreData
 
-final class ChangeRateCalculator {
+class ChangeRateCalculator {
 
-    private let url = URL(string: "http://data.fixer.io/api/latest?access_key=5157f49dc267682e93a11cd4c11b8371")!
+    var url:URL
+    var session:URLSession
+    let error:Error? = nil
 
-    func calculate(amount:Float, callback: @escaping (Float?) -> Void ) -> Void {
+    init(url: URL, session: URLSession) {
+        self.url = url
+        self.session = session
+    }
+
+    func calculate(amount:Float, callback: @escaping (Float?, Error?) -> Void ) -> Void {
         let existingRates = getExistingRates()
         if existingRates.count > 0 {
             DispatchQueue.main.async {
-                callback(amount * existingRates[0].rate)
+                callback(amount * existingRates[0].rate, nil)
             }
             return
         }
@@ -43,25 +50,27 @@ final class ChangeRateCalculator {
         return rates
     }
 
-    private func getNewRates(_ amount: Float, _ callback: @escaping (Float?) -> Void) {
+    private func getNewRates(_ amount: Float, _ callback: @escaping (Float?, Error?) -> Void) {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
-        let session = URLSession(configuration: .default)
         let task = session.dataTask(with: request) { data, response, error in
-            if let data = data {
-                do {
-                    let changeRate = try JSONDecoder().decode(ChangeRateDecodable.self, from: data)
-                    for rate in changeRate.rates {
-                        self.saveRate(dateText: changeRate.dateText, country: rate.key, rateValue: rate.value)
-                    }
-                    if let usdRate = changeRate.rates["USD"] {
-                        DispatchQueue.main.async {
-                            callback(amount * usdRate)
-                        }
-                    }
-                } catch {
-                    print(error)
+            guard let data = data, error == nil else {
+                callback(nil, error)
+                return
+            }
+
+            do {
+                let changeRate = try JSONDecoder().decode(ChangeRate.self, from: data)
+                for rate in changeRate.rates {
+                    self.saveRate(dateText: changeRate.dateText, country: rate.key, rateValue: rate.value)
                 }
+                if let usdRate = changeRate.rates["USD"] {
+                    DispatchQueue.main.async {
+                        callback(amount * usdRate, nil)
+                    }
+                }
+            } catch {
+                callback(nil, error)
             }
         }
         task.resume()

@@ -20,17 +20,32 @@
 		5BF856CA2AA76F1800758782 /* Montserrat-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5BF856C82AA76F1800758782 /* Montserrat-Bold.otf */; };
 		5BF856CC2AA76F2200758782 /* Asap-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5BF856CB2AA76F2200758782 /* Asap-Bold.otf */; };
 		5BF856D22AA79B7E00758782 /* ChangeRateCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF856D12AA79B7E00758782 /* ChangeRateCalculator.swift */; };
-		5BF856D62AA7AA8F00758782 /* ChangeRateDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF856D52AA7AA8F00758782 /* ChangeRateDecodable.swift */; };
+		5BF856D62AA7AA8F00758782 /* ChangeRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF856D52AA7AA8F00758782 /* ChangeRate.swift */; };
 		5BF856DC2AA7C78F00758782 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF856DB2AA7C78F00758782 /* CoreDataStack.swift */; };
 		5BF856DF2AA7C91500758782 /* AmericanDream.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5BF856DD2AA7C91500758782 /* AmericanDream.xcdatamodeld */; };
 		5BF856E12AA7CC5500758782 /* Rate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF856E02AA7CC5500758782 /* Rate.swift */; };
 		5BFA577D2AB34BF600CA14CE /* Translator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFA577C2AB34BF600CA14CE /* Translator.swift */; };
-		5BFA57802AB352A400CA14CE /* TranslationDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFA577F2AB352A400CA14CE /* TranslationDecodable.swift */; };
-		5BFA57822AB36B5600CA14CE /* WeatherDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFA57812AB36B5600CA14CE /* WeatherDecodable.swift */; };
+		5BFA57802AB352A400CA14CE /* Translation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFA577F2AB352A400CA14CE /* Translation.swift */; };
+		5BFA57822AB36B5600CA14CE /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFA57812AB36B5600CA14CE /* Weather.swift */; };
 		5BFA57842AB36E5200CA14CE /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFA57832AB36E5200CA14CE /* WeatherService.swift */; };
 		5BFA57862AB376B600CA14CE /* UIImageView+load.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFA57852AB376B600CA14CE /* UIImageView+load.swift */; };
 		5BFA57882AB3820500CA14CE /* String+capitalizedSentence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFA57872AB3820500CA14CE /* String+capitalizedSentence.swift */; };
+		5BFA57A92AB3A71A00CA14CE /* ChangeRateCalculatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFA57A82AB3A71A00CA14CE /* ChangeRateCalculatorTest.swift */; };
+		5BFA57AD2AB3AA8A00CA14CE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFA57AC2AB3AA8A00CA14CE /* Constants.swift */; };
+		5BFA57AF2AB3ACC800CA14CE /* URLSessionFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFA57AE2AB3ACC800CA14CE /* URLSessionFake.swift */; };
+		5BFA57B12AB3AF9A00CA14CE /* URLSessionDataTaskFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFA57B02AB3AF9A00CA14CE /* URLSessionDataTaskFake.swift */; };
+		5BFA57B32AB3B2B300CA14CE /* rates.json in Resources */ = {isa = PBXBuildFile; fileRef = 5BFA57B22AB3B2B300CA14CE /* rates.json */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5BFA57A02AB3A68100CA14CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5B571E8E2AA641B90026EAF6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5B571E952AA641B90026EAF6;
+			remoteInfo = AmericanDream;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		5B571E962AA641B90026EAF6 /* AmericanDream.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmericanDream.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -48,20 +63,33 @@
 		5BF856C82AA76F1800758782 /* Montserrat-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.otf"; sourceTree = "<group>"; };
 		5BF856CB2AA76F2200758782 /* Asap-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap-Bold.otf"; sourceTree = "<group>"; };
 		5BF856D12AA79B7E00758782 /* ChangeRateCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeRateCalculator.swift; sourceTree = "<group>"; };
-		5BF856D52AA7AA8F00758782 /* ChangeRateDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeRateDecodable.swift; sourceTree = "<group>"; };
+		5BF856D52AA7AA8F00758782 /* ChangeRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeRate.swift; sourceTree = "<group>"; };
 		5BF856DB2AA7C78F00758782 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		5BF856DE2AA7C91500758782 /* AmericanDream.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AmericanDream.xcdatamodel; sourceTree = "<group>"; };
 		5BF856E02AA7CC5500758782 /* Rate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rate.swift; sourceTree = "<group>"; };
 		5BFA577C2AB34BF600CA14CE /* Translator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translator.swift; sourceTree = "<group>"; };
-		5BFA577F2AB352A400CA14CE /* TranslationDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationDecodable.swift; sourceTree = "<group>"; };
-		5BFA57812AB36B5600CA14CE /* WeatherDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDecodable.swift; sourceTree = "<group>"; };
+		5BFA577F2AB352A400CA14CE /* Translation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translation.swift; sourceTree = "<group>"; };
+		5BFA57812AB36B5600CA14CE /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		5BFA57832AB36E5200CA14CE /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 		5BFA57852AB376B600CA14CE /* UIImageView+load.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+load.swift"; sourceTree = "<group>"; };
 		5BFA57872AB3820500CA14CE /* String+capitalizedSentence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+capitalizedSentence.swift"; sourceTree = "<group>"; };
+		5BFA579C2AB3A68100CA14CE /* AmericanDreamTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AmericanDreamTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5BFA57A82AB3A71A00CA14CE /* ChangeRateCalculatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeRateCalculatorTest.swift; sourceTree = "<group>"; };
+		5BFA57AC2AB3AA8A00CA14CE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		5BFA57AE2AB3ACC800CA14CE /* URLSessionFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionFake.swift; sourceTree = "<group>"; };
+		5BFA57B02AB3AF9A00CA14CE /* URLSessionDataTaskFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionDataTaskFake.swift; sourceTree = "<group>"; };
+		5BFA57B22AB3B2B300CA14CE /* rates.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = rates.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		5B571E932AA641B90026EAF6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5BFA57992AB3A68100CA14CE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -75,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				5B571E982AA641B90026EAF6 /* AmericanDream */,
+				5BFA579D2AB3A68100CA14CE /* AmericanDreamTests */,
 				5B571E972AA641B90026EAF6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -83,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				5B571E962AA641B90026EAF6 /* AmericanDream.app */,
+				5BFA579C2AB3A68100CA14CE /* AmericanDreamTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -149,6 +179,7 @@
 		5BF856CE2AA7834300758782 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				5BFA57AC2AB3AA8A00CA14CE /* Constants.swift */,
 				5BFA57852AB376B600CA14CE /* UIImageView+load.swift */,
 				5BFA57872AB3820500CA14CE /* String+capitalizedSentence.swift */,
 			);
@@ -167,11 +198,22 @@
 		5BFA577E2AB3520B00CA14CE /* Decodable */ = {
 			isa = PBXGroup;
 			children = (
-				5BF856D52AA7AA8F00758782 /* ChangeRateDecodable.swift */,
-				5BFA577F2AB352A400CA14CE /* TranslationDecodable.swift */,
-				5BFA57812AB36B5600CA14CE /* WeatherDecodable.swift */,
+				5BF856D52AA7AA8F00758782 /* ChangeRate.swift */,
+				5BFA577F2AB352A400CA14CE /* Translation.swift */,
+				5BFA57812AB36B5600CA14CE /* Weather.swift */,
 			);
 			path = Decodable;
+			sourceTree = "<group>";
+		};
+		5BFA579D2AB3A68100CA14CE /* AmericanDreamTests */ = {
+			isa = PBXGroup;
+			children = (
+				5BFA57A82AB3A71A00CA14CE /* ChangeRateCalculatorTest.swift */,
+				5BFA57AE2AB3ACC800CA14CE /* URLSessionFake.swift */,
+				5BFA57B02AB3AF9A00CA14CE /* URLSessionDataTaskFake.swift */,
+				5BFA57B22AB3B2B300CA14CE /* rates.json */,
+			);
+			path = AmericanDreamTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,6 +236,24 @@
 			productReference = 5B571E962AA641B90026EAF6 /* AmericanDream.app */;
 			productType = "com.apple.product-type.application";
 		};
+		5BFA579B2AB3A68100CA14CE /* AmericanDreamTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5BFA57A22AB3A68100CA14CE /* Build configuration list for PBXNativeTarget "AmericanDreamTests" */;
+			buildPhases = (
+				5BFA57982AB3A68100CA14CE /* Sources */,
+				5BFA57992AB3A68100CA14CE /* Frameworks */,
+				5BFA579A2AB3A68100CA14CE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5BFA57A12AB3A68100CA14CE /* PBXTargetDependency */,
+			);
+			name = AmericanDreamTests;
+			productName = AmericanDreamTests;
+			productReference = 5BFA579C2AB3A68100CA14CE /* AmericanDreamTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -206,6 +266,11 @@
 				TargetAttributes = {
 					5B571E952AA641B90026EAF6 = {
 						CreatedOnToolsVersion = 14.3;
+					};
+					5BFA579B2AB3A68100CA14CE = {
+						CreatedOnToolsVersion = 14.3;
+						LastSwiftMigration = 1430;
+						TestTargetID = 5B571E952AA641B90026EAF6;
 					};
 				};
 			};
@@ -223,6 +288,7 @@
 			projectRoot = "";
 			targets = (
 				5B571E952AA641B90026EAF6 /* AmericanDream */,
+				5BFA579B2AB3A68100CA14CE /* AmericanDreamTests */,
 			);
 		};
 /* End PBXProject section */
@@ -242,6 +308,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5BFA579A2AB3A68100CA14CE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5BFA57B32AB3B2B300CA14CE /* rates.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -250,6 +324,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B571EB22AA644EB0026EAF6 /* WeatherViewController.swift in Sources */,
+				5BFA57AD2AB3AA8A00CA14CE /* Constants.swift in Sources */,
 				5BFA577D2AB34BF600CA14CE /* Translator.swift in Sources */,
 				5B571E9A2AA641B90026EAF6 /* AppDelegate.swift in Sources */,
 				5BF856DF2AA7C91500758782 /* AmericanDream.xcdatamodeld in Sources */,
@@ -262,13 +337,31 @@
 				5BF856E12AA7CC5500758782 /* Rate.swift in Sources */,
 				5BFA57842AB36E5200CA14CE /* WeatherService.swift in Sources */,
 				5BF856D22AA79B7E00758782 /* ChangeRateCalculator.swift in Sources */,
-				5BFA57802AB352A400CA14CE /* TranslationDecodable.swift in Sources */,
-				5BFA57822AB36B5600CA14CE /* WeatherDecodable.swift in Sources */,
-				5BF856D62AA7AA8F00758782 /* ChangeRateDecodable.swift in Sources */,
+				5BFA57802AB352A400CA14CE /* Translation.swift in Sources */,
+				5BFA57822AB36B5600CA14CE /* Weather.swift in Sources */,
+				5BF856D62AA7AA8F00758782 /* ChangeRate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5BFA57982AB3A68100CA14CE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5BFA57AF2AB3ACC800CA14CE /* URLSessionFake.swift in Sources */,
+				5BFA57B12AB3AF9A00CA14CE /* URLSessionDataTaskFake.swift in Sources */,
+				5BFA57A92AB3A71A00CA14CE /* ChangeRateCalculatorTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5BFA57A12AB3A68100CA14CE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5B571E952AA641B90026EAF6 /* AmericanDream */;
+			targetProxy = 5BFA57A02AB3A68100CA14CE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		5B571E9F2AA641B90026EAF6 /* Main.storyboard */ = {
@@ -460,6 +553,45 @@
 			};
 			name = Release;
 		};
+		5BFA57A32AB3A68100CA14CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H3ZC655F2U;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.asurastudios.AmericanDreamTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AmericanDream.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AmericanDream";
+			};
+			name = Debug;
+		};
+		5BFA57A42AB3A68100CA14CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H3ZC655F2U;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.asurastudios.AmericanDreamTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AmericanDream.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AmericanDream";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -477,6 +609,15 @@
 			buildConfigurations = (
 				5B571EAB2AA641BB0026EAF6 /* Debug */,
 				5B571EAC2AA641BB0026EAF6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5BFA57A22AB3A68100CA14CE /* Build configuration list for PBXNativeTarget "AmericanDreamTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5BFA57A32AB3A68100CA14CE /* Debug */,
+				5BFA57A42AB3A68100CA14CE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

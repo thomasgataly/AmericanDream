@@ -22,7 +22,7 @@ final class Translator {
         let task = session.dataTask(with: request) { data, response, error in
             if let data = data {
                 do {
-                    let translation = try JSONDecoder().decode(TranslationDecodable.self, from: data)
+                    let translation = try JSONDecoder().decode(Translation.self, from: data)
                     DispatchQueue.main.async {
                         callback(translation.data.translations[0].translatedText, nil)
                     }

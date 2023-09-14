@@ -14,7 +14,7 @@ class ChangeRateViewController: UIViewController {
     @IBOutlet weak var calculateButton: UIButton!
     @IBOutlet weak var resultLabel: UILabel!
 
-    private let changeRateCalculator = ChangeRateCalculator()
+    private let changeRateCalculator = ChangeRateCalculator(url: URL(string: Constants.changeRateApi.endpoint)!, session: URLSession(configuration: .default))
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,23 +38,25 @@ class ChangeRateViewController: UIViewController {
         if let inputRawValue = inputAmount.text {
             if let inputValue = Float(inputRawValue) {
                 self.calculateButton.configuration?.showsActivityIndicator = true
-                changeRateCalculator.calculate(amount: inputValue) { result in
-                    if let result = result {
-                        let resultAmount = String(format: "%.2f", result)
-                        self.resultLabel.text = "$\(resultAmount)"
-                        self.calculateButton.configuration?.showsActivityIndicator = false
+                changeRateCalculator.calculate(amount: inputValue) { result, error in
+                    guard let result = result, error == nil else {
+                        self.showAlert(message: "Opération momentanément indisponible")
+                        return
                     }
+                    let resultAmount = String(format: "%.2f", result)
+                    self.resultLabel.text = "$\(resultAmount)"
+                    self.calculateButton.configuration?.showsActivityIndicator = false
                 }
             } else {
-                showAlert()
+                showAlert(message: "Veuillez saisir un montant")
             }
         }
     }
 
-    private func showAlert() {
+    private func showAlert(message:String) {
         let alertVC = UIAlertController(
             title: nil,
-            message: "Veuillez saisir un montant",
+            message: message,
             preferredStyle: .alert
         )
         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))

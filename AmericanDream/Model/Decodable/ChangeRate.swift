@@ -5,7 +5,7 @@
 //  Created by Thomas Gataly on 05/09/2023.
 //
 
-struct ChangeRateDecodable: Decodable {
+struct ChangeRate: Decodable {
     let dateText: String
     let rates: [String:Float]
 
