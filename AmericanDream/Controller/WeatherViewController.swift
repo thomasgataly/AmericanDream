@@ -25,7 +25,7 @@ final class WeatherViewController: UIViewController {
 
     @IBAction func searchButtonPressed(_ sender: UIButton) {
         guard let cityName = cityInput.text else {
-            showAlert()
+            showAlert(message:"Veuillez saisir le nom d'une ville")
             return
         }
         searchCityWeather(cityName: cityName)
@@ -47,40 +47,52 @@ final class WeatherViewController: UIViewController {
 
     private func searchMainCityWeather() {
         startLoading()
-        WeatherService.getWeather(cityName: "New York") { description, icon, temperature in
+        WeatherService.getWeather(cityName: "New York") { weather, error in
+            guard let weather = weather, error == nil else {
+                self.showAlert(message:"Ville incorrecte")
+                self.stopLoading()
+                return
+            }
+
             self.mainCityName.text = "New York"
-            self.mainCityWeatherDescription.text = description.capitalizedSentence
-            self.mainCityTemperature.text = "\(String(format: "%.0f",temperature)) °C"
-            self.mainCityWeatherIcon.load(url: URL(string: "https://openweathermap.org/img/wn/\(icon)@2x.png")!)
+            self.mainCityWeatherDescription.text = weather.weather[0].description.capitalizedSentence
+            self.mainCityTemperature.text = "\(String(format: "%.0f",weather.temperature.temp)) °C"
+            self.mainCityWeatherIcon.load(url: URL(string: "https://openweathermap.org/img/wn/\(weather.weather[0].icon)@2x.png")!)
             self.stopLoading()
         }
     }
 
     private func searchCityWeather(cityName:String) {
         startLoading()
-        WeatherService.getWeather(cityName: cityName) { description, icon, temperature in
-            self.cityName.text = cityName
-            self.cityWeatherDescription.text = description.capitalizedSentence
-            self.cityTemperature.text = "\(String(format: "%.0f",temperature)) °C"
-            self.cityWeatherIcon.load(url: URL(string: "https://openweathermap.org/img/wn/\(icon)@2x.png")!)
+        WeatherService.getWeather(cityName: cityName) { weather, error in
+            guard let weather = weather, error == nil else {
+                self.showAlert(message:"Ville incorrecte")
+                self.stopLoading()
+                return
+            }
+
+            self.cityName.text = cityName.capitalizedSentence
+            self.cityWeatherDescription.text = weather.weather[0].description.capitalizedSentence
+            self.cityTemperature.text = "\(String(format: "%.0f",weather.temperature.temp)) °C"
+            self.cityWeatherIcon.load(url: URL(string: "https://openweathermap.org/img/wn/\(weather.weather[0].icon)@2x.png")!)
             self.stopLoading()
         }
     }
 
     private func startLoading() {
-        searchButton.titleLabel?.text = ""
+        searchButton.setTitle("", for: .normal)
         searchButton.configuration?.showsActivityIndicator = true
     }
 
     private func stopLoading() {
-        searchButton.titleLabel?.text = "OK"
+        searchButton.setTitle("OK", for: .normal)
         searchButton.configuration?.showsActivityIndicator = false
     }
 
-    private func showAlert() {
+    private func showAlert(message:String) {
         let alertVC = UIAlertController(
             title: nil,
-            message: "Veuillez saisir le nom d'une ville",
+            message: message,
             preferredStyle: .alert
         )
         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))

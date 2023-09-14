@@ -7,12 +7,33 @@
 
 import UIKit
 
+struct Country {
+    let shortCode:String
+    let name:String
+    let flag: UIImage
+
+    init(shortCode: String, name: String, flag: UIImage) {
+        self.shortCode = shortCode
+        self.name = name
+        self.flag = flag
+    }
+}
+
 class TranslationViewController: UIViewController {
 
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var sourceTextView: UITextView!
     @IBOutlet weak var translateButton: UIButton!
     @IBOutlet weak var targetTextView: UITextView!
+    @IBOutlet weak var firstFlag: UIImageView!
+    @IBOutlet weak var firstCountry: UILabel!
+    @IBOutlet weak var secondFlag: UIImageView!
+    @IBOutlet weak var secondCountry: UILabel!
+
+    var translationDirection = [
+        Country(shortCode: "fr", name: "Français", flag: UIImage(named: "fr")!),
+        Country(shortCode: "en", name: "Anglais", flag: UIImage(named: "us")!)
+    ]
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -35,20 +56,44 @@ class TranslationViewController: UIViewController {
         targetTextView.textContainerInset = uiEdgeInsets
     }
 
-
-    @IBAction func onTranslateButtonPressed(_ sender: Any) {
+    @IBAction func onTranslateButtonPressed(_ sender: UIButton) {
         if sourceTextView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
             showAlert()
             return
         }
 
         translateButton.configuration?.showsActivityIndicator = true
-        Translator.translate(sourceTextView.text) { translatedText in
-            if let translatedText = translatedText {
-                self.targetTextView.text = translatedText
-                self.translateButton.configuration?.showsActivityIndicator = false
+        let source = translationDirection[0].shortCode
+        let target = translationDirection[1].shortCode
+        Translator.translate(text:sourceTextView.text, source: source, target: target) { translatedText, error in
+            guard let translatedText = translatedText, error == nil else {
+                self.showAlert()
+                self.stopLoading()
+                return
             }
+            self.targetTextView.text = translatedText
+            self.stopLoading()
         }
+    }
+
+    private func startLoading() {
+        translateButton.setTitle("", for: .normal)
+        translateButton.configuration?.showsActivityIndicator = true
+    }
+
+    private func stopLoading() {
+        translateButton.setTitle("TRADUIRE", for: .normal)
+        translateButton.configuration?.showsActivityIndicator = false
+    }
+
+    @IBAction func onReverseButtonPressed(_ sender: UIButton) {
+        translationDirection.reverse()
+        firstFlag.image = translationDirection[0].flag
+        firstCountry.text = translationDirection[0].name
+        secondFlag.image = translationDirection[1].flag
+        secondCountry.text = translationDirection[1].name
+        sourceTextView.text = ""
+        targetTextView.text = ""
     }
 
     private func showAlert() {

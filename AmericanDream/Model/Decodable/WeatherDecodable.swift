@@ -5,7 +5,7 @@
 //  Created by Thomas Gataly on 14/09/2023.
 //
 
-struct WeatherDecodable:Decodable {
+struct Weather:Decodable {
     let weather: [Weather]
     let temperature: Temperature
 
@@ -13,13 +13,13 @@ struct WeatherDecodable:Decodable {
         case weather
         case temperature = "main"
     }
-}
 
-struct Weather:Decodable {
-    let description: String
-    let icon: String
-}
+    struct Weather:Decodable {
+        let description: String
+        let icon: String
+    }
 
-struct Temperature:Decodable {
-    let temp: Float
+    struct Temperature:Decodable {
+        let temp: Float
+    }
 }
