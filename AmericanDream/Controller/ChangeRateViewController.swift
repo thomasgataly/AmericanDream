@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ChangeRateViewController: UIViewController {
+class ChangeRateViewController: AbstractController {
 
     @IBOutlet weak var inputAmount: UITextField!
     @IBOutlet weak var mainView: UIView!
@@ -35,32 +35,24 @@ class ChangeRateViewController: UIViewController {
     }
 
     @IBAction func calculateChangeRate(_ sender: UIButton) {
-        if let inputRawValue = inputAmount.text {
-            if let inputValue = Float(inputRawValue) {
-                self.calculateButton.configuration?.showsActivityIndicator = true
-                changeRateCalculator.calculate(amount: inputValue) { result, error in
-                    guard let result = result, error == nil else {
-                        self.showAlert(message: "Opération momentanément indisponible")
-                        return
-                    }
-                    let resultAmount = String(format: "%.2f", result)
-                    self.resultLabel.text = "$\(resultAmount)"
-                    self.calculateButton.configuration?.showsActivityIndicator = false
+        guard let inputRawValue = inputAmount.text, let inputValue = Float(inputRawValue) else {
+            showAlert(title: "OK", message: "Veuillez saisir un montant")
+            return
+        }
+
+        startLoading(button: calculateButton)
+        changeRateCalculator.calculate(amount: inputValue) { result in
+            DispatchQueue.main.async {
+                switch result {
+                    case .failure(let error):
+                        self.showAlert(title:"OK", message: error.rawValue)
+                    case .success(let result):
+                        let resultAmount = String(format: "%.2f", result)
+                        self.resultLabel.text = "$\(resultAmount)"
+                        self.stopLoading(button: self.calculateButton, text: "CALCULER")
                 }
-            } else {
-                showAlert(message: "Veuillez saisir un montant")
             }
         }
-    }
-
-    private func showAlert(message:String) {
-        let alertVC = UIAlertController(
-            title: nil,
-            message: message,
-            preferredStyle: .alert
-        )
-        alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        self.present(alertVC, animated: true)
     }
 }
 

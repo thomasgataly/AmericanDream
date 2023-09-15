@@ -35,6 +35,9 @@
 		5BFA57AF2AB3ACC800CA14CE /* URLSessionFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFA57AE2AB3ACC800CA14CE /* URLSessionFake.swift */; };
 		5BFA57B12AB3AF9A00CA14CE /* URLSessionDataTaskFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFA57B02AB3AF9A00CA14CE /* URLSessionDataTaskFake.swift */; };
 		5BFA57B32AB3B2B300CA14CE /* rates.json in Resources */ = {isa = PBXBuildFile; fileRef = 5BFA57B22AB3B2B300CA14CE /* rates.json */; };
+		5BFA57B52AB45AD900CA14CE /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFA57B42AB45AD900CA14CE /* NetworkError.swift */; };
+		5BFA57B72AB45C3600CA14CE /* AbstractController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFA57B62AB45C3600CA14CE /* AbstractController.swift */; };
+		5BFA57B92AB45FC100CA14CE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFA57B82AB45FC100CA14CE /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +82,9 @@
 		5BFA57AE2AB3ACC800CA14CE /* URLSessionFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionFake.swift; sourceTree = "<group>"; };
 		5BFA57B02AB3AF9A00CA14CE /* URLSessionDataTaskFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionDataTaskFake.swift; sourceTree = "<group>"; };
 		5BFA57B22AB3B2B300CA14CE /* rates.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = rates.json; sourceTree = "<group>"; };
+		5BFA57B42AB45AD900CA14CE /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		5BFA57B62AB45C3600CA14CE /* AbstractController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractController.swift; sourceTree = "<group>"; };
+		5BFA57B82AB45FC100CA14CE /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +148,7 @@
 				5BF856E02AA7CC5500758782 /* Rate.swift */,
 				5BFA577C2AB34BF600CA14CE /* Translator.swift */,
 				5BFA57832AB36E5200CA14CE /* WeatherService.swift */,
+				5BFA57B82AB45FC100CA14CE /* NetworkManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -152,6 +159,7 @@
 				5B571EAD2AA6449F0026EAF6 /* ChangeRateViewController.swift */,
 				5B571EAF2AA644D60026EAF6 /* TranslationViewController.swift */,
 				5B571EB12AA644EB0026EAF6 /* WeatherViewController.swift */,
+				5BFA57B62AB45C3600CA14CE /* AbstractController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -182,6 +190,7 @@
 				5BFA57AC2AB3AA8A00CA14CE /* Constants.swift */,
 				5BFA57852AB376B600CA14CE /* UIImageView+load.swift */,
 				5BFA57872AB3820500CA14CE /* String+capitalizedSentence.swift */,
+				5BFA57B42AB45AD900CA14CE /* NetworkError.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -328,16 +337,19 @@
 				5BFA577D2AB34BF600CA14CE /* Translator.swift in Sources */,
 				5B571E9A2AA641B90026EAF6 /* AppDelegate.swift in Sources */,
 				5BF856DF2AA7C91500758782 /* AmericanDream.xcdatamodeld in Sources */,
+				5BFA57B72AB45C3600CA14CE /* AbstractController.swift in Sources */,
 				5B571EAE2AA6449F0026EAF6 /* ChangeRateViewController.swift in Sources */,
 				5B571E9C2AA641B90026EAF6 /* SceneDelegate.swift in Sources */,
 				5BF856DC2AA7C78F00758782 /* CoreDataStack.swift in Sources */,
 				5BFA57862AB376B600CA14CE /* UIImageView+load.swift in Sources */,
 				5BFA57882AB3820500CA14CE /* String+capitalizedSentence.swift in Sources */,
 				5B571EB02AA644D60026EAF6 /* TranslationViewController.swift in Sources */,
+				5BFA57B92AB45FC100CA14CE /* NetworkManager.swift in Sources */,
 				5BF856E12AA7CC5500758782 /* Rate.swift in Sources */,
 				5BFA57842AB36E5200CA14CE /* WeatherService.swift in Sources */,
 				5BF856D22AA79B7E00758782 /* ChangeRateCalculator.swift in Sources */,
 				5BFA57802AB352A400CA14CE /* Translation.swift in Sources */,
+				5BFA57B52AB45AD900CA14CE /* NetworkError.swift in Sources */,
 				5BFA57822AB36B5600CA14CE /* Weather.swift in Sources */,
 				5BF856D62AA7AA8F00758782 /* ChangeRate.swift in Sources */,
 			);

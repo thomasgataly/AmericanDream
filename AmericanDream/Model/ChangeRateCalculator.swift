@@ -8,23 +8,12 @@
 import Foundation
 import CoreData
 
-class ChangeRateCalculator {
+final class ChangeRateCalculator:NetworkManager {
 
-    var url:URL
-    var session:URLSession
-    let error:Error? = nil
-
-    init(url: URL, session: URLSession) {
-        self.url = url
-        self.session = session
-    }
-
-    func calculate(amount:Float, callback: @escaping (Float?, Error?) -> Void ) -> Void {
+    func calculate(amount:Float, callback: @escaping (Result<Float, NetworkError>) -> Void) -> Void {
         let existingRates = getExistingRates()
         if existingRates.count > 0 {
-            DispatchQueue.main.async {
-                callback(amount * existingRates[0].rate, nil)
-            }
+            callback(.success(amount * existingRates[0].rate))
             return
         }
 
@@ -50,12 +39,13 @@ class ChangeRateCalculator {
         return rates
     }
 
-    private func getNewRates(_ amount: Float, _ callback: @escaping (Float?, Error?) -> Void) {
+    private func getNewRates(_ amount: Float, _ callback: @escaping (Result<Float, NetworkError>) -> Void) {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
+        request.url?.append(queryItems: [URLQueryItem(name: "access_key", value: Constants.changeRateApi.apiKey)])
         let task = session.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {
-                callback(nil, error)
+                callback(.failure(NetworkError.commonError))
                 return
             }
 
@@ -65,12 +55,10 @@ class ChangeRateCalculator {
                     self.saveRate(dateText: changeRate.dateText, country: rate.key, rateValue: rate.value)
                 }
                 if let usdRate = changeRate.rates["USD"] {
-                    DispatchQueue.main.async {
-                        callback(amount * usdRate, nil)
-                    }
+                    callback(.success(amount * usdRate))
                 }
             } catch {
-                callback(nil, error)
+                callback(.failure(NetworkError.decodingError))
             }
         }
         task.resume()

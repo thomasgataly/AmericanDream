@@ -19,7 +19,7 @@ struct Country {
     }
 }
 
-class TranslationViewController: UIViewController {
+class TranslationViewController: AbstractController {
 
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var sourceTextView: UITextView!
@@ -34,6 +34,8 @@ class TranslationViewController: UIViewController {
         Country(shortCode: "fr", name: "Français", flag: UIImage(named: "fr")!),
         Country(shortCode: "en", name: "Anglais", flag: UIImage(named: "us")!)
     ]
+
+    private let translator = Translator(url: URL(string: Constants.translatorApi.endpoint)!, session: URLSession(configuration: .default))
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -58,32 +60,25 @@ class TranslationViewController: UIViewController {
 
     @IBAction func onTranslateButtonPressed(_ sender: UIButton) {
         if sourceTextView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-            showAlert()
+            showAlert(title: "OK", message: "Veuillez saisir un texte à traduire")
             return
         }
 
-        translateButton.configuration?.showsActivityIndicator = true
+        startLoading(button: translateButton)
         let source = translationDirection[0].shortCode
         let target = translationDirection[1].shortCode
-        Translator.translate(text:sourceTextView.text, source: source, target: target) { translatedText, error in
-            guard let translatedText = translatedText, error == nil else {
-                self.showAlert()
-                self.stopLoading()
-                return
+        translator.translate(text:sourceTextView.text, source: source, target: target) { result in
+            DispatchQueue.main.async {
+                switch result {
+                    case .failure(let error):
+                        self.showAlert(title: "OK", message: error.rawValue)
+                        self.stopLoading(button: self.translateButton, text: "TRADUIRE")
+                    case .success(let translatedText):
+                        self.targetTextView.text = translatedText
+                        self.stopLoading(button: self.translateButton, text: "TRADUIRE")
+                }
             }
-            self.targetTextView.text = translatedText
-            self.stopLoading()
         }
-    }
-
-    private func startLoading() {
-        translateButton.setTitle("", for: .normal)
-        translateButton.configuration?.showsActivityIndicator = true
-    }
-
-    private func stopLoading() {
-        translateButton.setTitle("TRADUIRE", for: .normal)
-        translateButton.configuration?.showsActivityIndicator = false
     }
 
     @IBAction func onReverseButtonPressed(_ sender: UIButton) {
@@ -94,16 +89,6 @@ class TranslationViewController: UIViewController {
         secondCountry.text = translationDirection[1].name
         sourceTextView.text = ""
         targetTextView.text = ""
-    }
-
-    private func showAlert() {
-        let alertVC = UIAlertController(
-            title: nil,
-            message: "Veuillez saisir un texte à traduire",
-            preferredStyle: .alert
-        )
-        alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        self.present(alertVC, animated: true)
     }
 }
 

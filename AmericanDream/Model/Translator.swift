@@ -7,28 +7,30 @@
 
 import Foundation
 
-final class Translator {
+final class Translator:NetworkManager {
 
-    static let url = URL(string: "https://translation.googleapis.com/language/translate/v2")!
-    private static let key = "AIzaSyAB-ZcaAgzs36sT8EWFViBE6A-yOXFg-xU"
-    let error:Error? = nil
-
-    static func translate(text: String, source:String, target:String, _ callback: @escaping (String?, Error?) -> Void) {
-        var request = URLRequest(url: self.url)
+    func translate(text: String, source:String, target:String, _ callback: @escaping (Result<String, NetworkError>) -> Void) {
+        var urlComponents = URLComponents()
+        urlComponents.queryItems = [
+            URLQueryItem(name: "q", value: text),
+            URLQueryItem(name: "source", value: source),
+            URLQueryItem(name: "target", value: target),
+            URLQueryItem(name: "key", value: Constants.translatorApi.apiKey)
+        ]
+        var request = URLRequest(url: url)
         request.httpMethod = "POST"
-        let body = "q=\(text)&source=\(source)&target=\(target)&key=\(self.key)"
-        request.httpBody = body.data(using: .utf8)
-        let session = URLSession(configuration: .default)
+        request.httpBody = urlComponents.percentEncodedQuery?.data(using: .utf8)
         let task = session.dataTask(with: request) { data, response, error in
-            if let data = data {
-                do {
-                    let translation = try JSONDecoder().decode(Translation.self, from: data)
-                    DispatchQueue.main.async {
-                        callback(translation.data.translations[0].translatedText, nil)
-                    }
-                } catch {
-                    callback(nil, error)
-                }
+            guard let data = data, error == nil else {
+                callback(.failure(NetworkError.commonError))
+                return
+            }
+
+            do {
+                let translation = try JSONDecoder().decode(Translation.self, from: data)
+                callback(.success(translation.data.translations[0].translatedText))
+            } catch {
+                callback(.failure(NetworkError.decodingError))
             }
         }
         task.resume()

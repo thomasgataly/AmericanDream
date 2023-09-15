@@ -7,33 +7,46 @@
 
 import Foundation
 
-final class WeatherService {
-    static let url = URL(string: "https://api.openweathermap.org/data/2.5/weather")!
-    private static let key = "71819d34f088ab38323f1d41880f292a"
-    let error:Error? = nil
+enum WeatherServiceError:String,Error {
+    case missingCity = "Veuillez saisir une ville"
+    case notFoundCity = "Ville introuvable"
+    case commonError = "Une erreur est survenue"
+    case decodingError = "Données incorrectes"
+}
 
-    static func getWeather(cityName: String, _ callback: @escaping (Weather?, Error?) -> Void) {
-        var request = URLRequest(url: self.url)
+final class WeatherService:NetworkManager {
+
+    func getWeather(cityName: String, _ callback: @escaping (Result<Weather, WeatherServiceError>) -> Void) {
+        var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.url?.append(queryItems: [
             URLQueryItem(name: "q", value: cityName),
             URLQueryItem(name: "lang", value: "fr"),
             URLQueryItem(name: "units", value: "metric"),
-            URLQueryItem(name: "appid", value: self.key)
+            URLQueryItem(name: "appid", value: Constants.weatherApi.apiKey)
         ])
-        let session = URLSession(configuration: .default)
         let task = session.dataTask(with: request) { data, response, error in
-            if let data = data {
-                do {
-                    let weather = try JSONDecoder().decode(Weather.self, from: data)
-                    DispatchQueue.main.async {
-                        callback(weather, nil)
-                    }
-                } catch {
-                    DispatchQueue.main.async {
-                        callback(nil, error)
-                    }
+            guard let data = data, error == nil else {
+                callback(.failure(WeatherServiceError.commonError))
+                return
+            }
+
+            if let response = response as? HTTPURLResponse {
+                if response.statusCode == 400 {
+                    callback(.failure(WeatherServiceError.missingCity))
+                    return
                 }
+                if response.statusCode == 404 {
+                    callback(.failure(WeatherServiceError.notFoundCity))
+                    return
+                }
+            }
+
+            do {
+                let weather = try JSONDecoder().decode(Weather.self, from: data)
+                callback(.success(weather))
+            } catch {
+                callback(.failure(WeatherServiceError.decodingError))
             }
         }
         task.resume()
