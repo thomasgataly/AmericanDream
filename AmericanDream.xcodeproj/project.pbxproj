@@ -32,12 +32,13 @@
 		5BFA57882AB3820500CA14CE /* String+capitalizedSentence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFA57872AB3820500CA14CE /* String+capitalizedSentence.swift */; };
 		5BFA57A92AB3A71A00CA14CE /* ChangeRateCalculatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFA57A82AB3A71A00CA14CE /* ChangeRateCalculatorTest.swift */; };
 		5BFA57AD2AB3AA8A00CA14CE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFA57AC2AB3AA8A00CA14CE /* Constants.swift */; };
-		5BFA57AF2AB3ACC800CA14CE /* URLSessionFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFA57AE2AB3ACC800CA14CE /* URLSessionFake.swift */; };
 		5BFA57B12AB3AF9A00CA14CE /* URLSessionDataTaskFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFA57B02AB3AF9A00CA14CE /* URLSessionDataTaskFake.swift */; };
-		5BFA57B32AB3B2B300CA14CE /* rates.json in Resources */ = {isa = PBXBuildFile; fileRef = 5BFA57B22AB3B2B300CA14CE /* rates.json */; };
+		5BFA57B32AB3B2B300CA14CE /* valid-rates.json in Resources */ = {isa = PBXBuildFile; fileRef = 5BFA57B22AB3B2B300CA14CE /* valid-rates.json */; };
 		5BFA57B52AB45AD900CA14CE /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFA57B42AB45AD900CA14CE /* NetworkError.swift */; };
 		5BFA57B72AB45C3600CA14CE /* AbstractController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFA57B62AB45C3600CA14CE /* AbstractController.swift */; };
 		5BFA57B92AB45FC100CA14CE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFA57B82AB45FC100CA14CE /* NetworkManager.swift */; };
+		5BFA57BB2AB86EDC00CA14CE /* URLProtocolStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFA57BA2AB86EDC00CA14CE /* URLProtocolStub.swift */; };
+		5BFA57BD2AB87FE700CA14CE /* invalid-rates.json in Resources */ = {isa = PBXBuildFile; fileRef = 5BFA57BC2AB87FE700CA14CE /* invalid-rates.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,12 +80,13 @@
 		5BFA579C2AB3A68100CA14CE /* AmericanDreamTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AmericanDreamTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BFA57A82AB3A71A00CA14CE /* ChangeRateCalculatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeRateCalculatorTest.swift; sourceTree = "<group>"; };
 		5BFA57AC2AB3AA8A00CA14CE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		5BFA57AE2AB3ACC800CA14CE /* URLSessionFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionFake.swift; sourceTree = "<group>"; };
 		5BFA57B02AB3AF9A00CA14CE /* URLSessionDataTaskFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionDataTaskFake.swift; sourceTree = "<group>"; };
-		5BFA57B22AB3B2B300CA14CE /* rates.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = rates.json; sourceTree = "<group>"; };
+		5BFA57B22AB3B2B300CA14CE /* valid-rates.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = "valid-rates.json"; sourceTree = "<group>"; };
 		5BFA57B42AB45AD900CA14CE /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		5BFA57B62AB45C3600CA14CE /* AbstractController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractController.swift; sourceTree = "<group>"; };
 		5BFA57B82AB45FC100CA14CE /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		5BFA57BA2AB86EDC00CA14CE /* URLProtocolStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolStub.swift; sourceTree = "<group>"; };
+		5BFA57BC2AB87FE700CA14CE /* invalid-rates.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = "invalid-rates.json"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,9 +220,10 @@
 			isa = PBXGroup;
 			children = (
 				5BFA57A82AB3A71A00CA14CE /* ChangeRateCalculatorTest.swift */,
-				5BFA57AE2AB3ACC800CA14CE /* URLSessionFake.swift */,
 				5BFA57B02AB3AF9A00CA14CE /* URLSessionDataTaskFake.swift */,
-				5BFA57B22AB3B2B300CA14CE /* rates.json */,
+				5BFA57B22AB3B2B300CA14CE /* valid-rates.json */,
+				5BFA57BA2AB86EDC00CA14CE /* URLProtocolStub.swift */,
+				5BFA57BC2AB87FE700CA14CE /* invalid-rates.json */,
 			);
 			path = AmericanDreamTests;
 			sourceTree = "<group>";
@@ -321,7 +324,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5BFA57B32AB3B2B300CA14CE /* rates.json in Resources */,
+				5BFA57B32AB3B2B300CA14CE /* valid-rates.json in Resources */,
+				5BFA57BD2AB87FE700CA14CE /* invalid-rates.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,9 +363,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5BFA57AF2AB3ACC800CA14CE /* URLSessionFake.swift in Sources */,
 				5BFA57B12AB3AF9A00CA14CE /* URLSessionDataTaskFake.swift in Sources */,
 				5BFA57A92AB3A71A00CA14CE /* ChangeRateCalculatorTest.swift in Sources */,
+				5BFA57BB2AB86EDC00CA14CE /* URLProtocolStub.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

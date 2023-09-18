@@ -8,9 +8,22 @@
 import Foundation
 import CoreData
 
-final class ChangeRateCalculator:NetworkManager {
+enum ChangeRateCalculatorError:String,Error {
+    case missingCurrency = "Taux introuvable"
+    case commonError = "Une erreur est survenue"
+    case decodingError = "Données incorrectes"
+}
 
-    func calculate(amount:Float, callback: @escaping (Result<Float, NetworkError>) -> Void) -> Void {
+final class ChangeRateCalculator {
+
+    var url = URL(string: Constants.changeRateApi.endpoint)!
+    var session:URLSession
+
+    init(session: URLSession) {
+        self.session = session
+    }
+
+    func calculate(amount:Float, callback: @escaping (Result<Float, ChangeRateCalculatorError>) -> Void) -> Void {
         let existingRates = getExistingRates()
         if existingRates.count > 0 {
             callback(.success(amount * existingRates[0].rate))
@@ -39,13 +52,13 @@ final class ChangeRateCalculator:NetworkManager {
         return rates
     }
 
-    private func getNewRates(_ amount: Float, _ callback: @escaping (Result<Float, NetworkError>) -> Void) {
+    private func getNewRates(_ amount: Float, _ callback: @escaping (Result<Float, ChangeRateCalculatorError>) -> Void) {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.url?.append(queryItems: [URLQueryItem(name: "access_key", value: Constants.changeRateApi.apiKey)])
         let task = session.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {
-                callback(.failure(NetworkError.commonError))
+                callback(.failure(ChangeRateCalculatorError.commonError))
                 return
             }
 
@@ -56,9 +69,11 @@ final class ChangeRateCalculator:NetworkManager {
                 }
                 if let usdRate = changeRate.rates["USD"] {
                     callback(.success(amount * usdRate))
+                } else {
+                    callback(.failure(ChangeRateCalculatorError.missingCurrency))
                 }
             } catch {
-                callback(.failure(NetworkError.decodingError))
+                callback(.failure(ChangeRateCalculatorError.decodingError))
             }
         }
         task.resume()
