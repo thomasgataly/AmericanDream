@@ -1,0 +1,39 @@
+{
+  "configurations" : [
+    {
+      "id" : "70BFFC74-A3C0-4C32-946E-5A7396D22724",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:AmericanDream.xcodeproj",
+          "identifier" : "5B571E952AA641B90026EAF6",
+          "name" : "AmericanDream"
+        }
+      ]
+    },
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:AmericanDream.xcodeproj",
+      "identifier" : "5B571E952AA641B90026EAF6",
+      "name" : "AmericanDream"
+    },
+    "testExecutionOrdering" : "random"
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:AmericanDream.xcodeproj",
+        "identifier" : "5BFA579B2AB3A68100CA14CE",
+        "name" : "AmericanDreamTests"
+      }
+    }
+  ],
+  "version" : 1
+}

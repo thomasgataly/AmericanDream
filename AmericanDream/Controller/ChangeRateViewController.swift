@@ -14,7 +14,12 @@ class ChangeRateViewController: AbstractController {
     @IBOutlet weak var calculateButton: UIButton!
     @IBOutlet weak var resultLabel: UILabel!
 
-    private let changeRateCalculator = ChangeRateCalculator(session: URLSession(configuration: .default))
+    private let changeRateCalculator = ChangeRateCalculator(
+        url: URL(string: Constants.changeRateApi.endpoint)!,
+        session: URLSession(configuration: .default),
+        apiKey: Constants.changeRateApi.apiKey,
+        cache: ChangeRateCacheManager()
+    )
 
     override func viewDidLoad() {
         super.viewDidLoad()

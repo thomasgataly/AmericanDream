@@ -35,7 +35,11 @@ class TranslationViewController: AbstractController {
         Country(shortCode: "en", name: "Anglais", flag: UIImage(named: "us")!)
     ]
 
-    private let translator = Translator(url: URL(string: Constants.translatorApi.endpoint)!, session: URLSession(configuration: .default))
+    private let translator = Translator(
+        url: URL(string: Constants.translatorApi.endpoint)!,
+        session: URLSession(configuration: .default),
+        apiKey: Constants.translatorApi.apiKey
+    )
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)

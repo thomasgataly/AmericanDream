@@ -31,7 +31,11 @@ final class WeatherViewController: AbstractController {
         searchCityWeather(cityName: cityName)
     }
 
-    private let weatherService = WeatherService(url: URL(string: Constants.weatherApi.endpoint)!, session: URLSession(configuration: .default))
+    private let weatherService = WeatherService(
+        url: URL(string: Constants.weatherApi.endpoint)!,
+        session: URLSession(configuration: .default),
+        apiKey: Constants.weatherApi.apiKey
+    )
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)

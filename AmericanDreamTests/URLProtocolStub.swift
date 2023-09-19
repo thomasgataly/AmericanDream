@@ -10,6 +10,7 @@ import UIKit
 class URLProtocolStub: URLProtocol {
     // this dictionary maps URLs to test data
     static var testURLs = [URL?: Data]()
+    static var testErrorURLs = [URL?: Error]()
 
     // say we want to handle all types of request
     override class func canInit(with request: URLRequest) -> Bool {
@@ -24,10 +25,14 @@ class URLProtocolStub: URLProtocol {
     override func startLoading() {
         // if we have a valid URL…
         if let url = request.url {
-            // …and if we have test data for that URL…
+            // …and if we have test data or error for that URL…
             if let data = URLProtocolStub.testURLs[url] {
                 // …load it immediately.
                 self.client?.urlProtocol(self, didLoad: data)
+            }
+            if let error = URLProtocolStub.testErrorURLs[url] {
+                // …load it immediately.
+                self.client?.urlProtocol(self, didFailWithError: error)
             }
         }
 
