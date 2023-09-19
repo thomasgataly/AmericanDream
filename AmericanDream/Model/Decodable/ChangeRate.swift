@@ -7,7 +7,7 @@
 
 struct ChangeRate: Decodable {
     let dateText: String
-    let rates: [String:Float]
+    let rates: [String:Double]
 
     enum CodingKeys: String, CodingKey {
         case dateText = "date"

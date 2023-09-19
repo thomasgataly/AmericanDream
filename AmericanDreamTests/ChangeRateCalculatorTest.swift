@@ -13,7 +13,7 @@ final class ChangeRateCalculatorTest: XCTestCase {
     private var sut:ChangeRateCalculator!
 
     override func setUp() {
-        sut = ChangeRateCalculator(url:url,session: getSession(), apiKey: nil,cache: InMemoryChangeRateCacheManager())
+        sut = ChangeRateCalculator(url:url,session: getSession(), apiKey: nil, cache: InMemoryChangeRateCacheManager())
         URLProtocolStub.testURLs = [:]
         URLProtocolStub.testErrorURLs = [:]
         InMemoryChangeRateCacheManager.rates = [:]
@@ -28,7 +28,7 @@ final class ChangeRateCalculatorTest: XCTestCase {
         sut.calculate(amount: 10.0) { result in
             //Then
             guard case .failure(let failure) = result else { return XCTFail() }
-            XCTAssertEqual(failure, ChangeRateCalculatorError.decodingError)
+            XCTAssertEqual(failure, K.changeRateApi.error.decodingError)
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 0.1)
@@ -44,7 +44,7 @@ final class ChangeRateCalculatorTest: XCTestCase {
         sut.calculate(amount: 10.0) { result in
             //Then
             guard case .failure(let failure) = result else { return XCTFail() }
-            XCTAssertEqual(failure, ChangeRateCalculatorError.missingCurrency)
+            XCTAssertEqual(failure, K.changeRateApi.error.missingCurrency)
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 0.1)
@@ -59,32 +59,62 @@ final class ChangeRateCalculatorTest: XCTestCase {
         sut.calculate(amount: 10.0) { result in
             //Then
             guard case .failure(let failure) = result else { return XCTFail() }
-            XCTAssertEqual(failure, ChangeRateCalculatorError.commonError)
+            XCTAssertEqual(failure, K.changeRateApi.error.commonError)
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 0.1)
     }
 
-    func testCorrectDataReturnsConvertedAmount() {
+    func testCorrectDataReturnsConvertedAmountAndSaveInCache() {
+        //Given
         guard let jsonData = readLocalJSONFile(forName: "valid-rates") else { return XCTFail("file not found") }
         URLProtocolStub.testURLs = [url: jsonData]
+        let amount = 10.0
+        let rateFileUSDRate = 1.066906
+        let rateFileAEDRate = 3.918782
+        let rateFileZWLRate = 343.543219
+        let expectedResult = amount * rateFileUSDRate
+        let rateFileDateText = "2023-09-14"
         let expectation = XCTestExpectation(description: "wait...")
-        let amount = Float(10.0)
-        let expectedResult = amount * 1.066906
 
         //When
         sut.calculate(amount: amount) { result in
-            //Then
+            //Then get result
             guard case .success(let result) = result else { return XCTFail() }
             XCTAssertEqual(result, expectedResult)
             expectation.fulfill()
 
-            //todo crash here
-            guard let savedRates = InMemoryChangeRateCacheManager.rates[DateHelper.getTodayDateText()] else { return XCTFail("rates not saved") }
-            XCTAssertEqual(savedRates["AED"], 3.918782)
-            XCTAssertEqual(savedRates["USD"], 1.066906)
-            XCTAssertEqual(savedRates["ZWL"], 343.543219)
-            XCTAssertEqual(InMemoryChangeRateCacheManager.rates[DateHelper.getTodayDateText()]?.count, 3)
+            //and save in cache
+            guard let savedRates = InMemoryChangeRateCacheManager.rates[rateFileDateText] else { return XCTFail("rates not saved") }
+            XCTAssertEqual(savedRates["AED"], rateFileAEDRate)
+            XCTAssertEqual(savedRates["USD"], rateFileUSDRate)
+            XCTAssertEqual(savedRates["ZWL"], rateFileZWLRate)
+            XCTAssertEqual(InMemoryChangeRateCacheManager.rates[rateFileDateText]?.count, 3)
+        }
+        wait(for: [expectation], timeout: 0.1)
+    }
+
+    func testCorrectDataReturnsConvertedAmountFromCache() {
+        //Given
+        guard let jsonData = readLocalJSONFile(forName: "valid-rates") else { return XCTFail("file not found") }
+        URLProtocolStub.testURLs = [url: jsonData]
+        let amount = 10.0
+        let rateFileUSDRate = 1.066906
+        let expectedResult = amount * rateFileUSDRate
+        let expectation = XCTestExpectation(description: "wait...")
+
+        //Set a rate already present in the cache
+        InMemoryChangeRateCacheManager.rates[DateHelper.getTodayDateText()] = ["USD":rateFileUSDRate]
+
+        //When
+        sut.calculate(amount: amount) { result in
+            //Then get result
+            guard case .success(let result) = result else { return XCTFail() }
+            XCTAssertEqual(result, expectedResult)
+            expectation.fulfill()
+
+            //cache is still the same
+            XCTAssertEqual(InMemoryChangeRateCacheManager.rates[DateHelper.getTodayDateText()]?.count, 1)
         }
         wait(for: [expectation], timeout: 0.1)
     }
@@ -92,7 +122,6 @@ final class ChangeRateCalculatorTest: XCTestCase {
     private func getSession() -> (URLSession) {
         let config = URLSessionConfiguration.ephemeral
         config.protocolClasses = [URLProtocolStub.self]
-
         return URLSession(configuration: config)
     }
 

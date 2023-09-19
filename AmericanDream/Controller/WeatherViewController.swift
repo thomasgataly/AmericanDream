@@ -32,9 +32,9 @@ final class WeatherViewController: AbstractController {
     }
 
     private let weatherService = WeatherService(
-        url: URL(string: Constants.weatherApi.endpoint)!,
+        url: URL(string: K.weatherApi.endpoint)!,
         session: URLSession(configuration: .default),
-        apiKey: Constants.weatherApi.apiKey
+        apiKey: K.weatherApi.apiKey
     )
 
     override func viewDidAppear(_ animated: Bool) {

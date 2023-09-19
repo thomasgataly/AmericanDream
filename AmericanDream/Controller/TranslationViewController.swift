@@ -36,9 +36,9 @@ class TranslationViewController: AbstractController {
     ]
 
     private let translator = Translator(
-        url: URL(string: Constants.translatorApi.endpoint)!,
+        url: URL(string: K.translatorApi.endpoint)!,
         session: URLSession(configuration: .default),
-        apiKey: Constants.translatorApi.apiKey
+        apiKey: K.translatorApi.apiKey
     )
 
     override func viewDidAppear(_ animated: Bool) {

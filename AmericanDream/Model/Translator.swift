@@ -15,7 +15,7 @@ final class Translator:NetworkManager {
             URLQueryItem(name: "q", value: text),
             URLQueryItem(name: "source", value: source),
             URLQueryItem(name: "target", value: target),
-            URLQueryItem(name: "key", value: Constants.translatorApi.apiKey)
+            URLQueryItem(name: "key", value: K.translatorApi.apiKey)
         ]
         var request = URLRequest(url: url)
         request.httpMethod = "POST"

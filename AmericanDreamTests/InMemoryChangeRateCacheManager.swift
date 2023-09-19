@@ -10,13 +10,13 @@ import Foundation
 
 class InMemoryChangeRateCacheManager:ChangeRateCacheManager {
 
-    public static var rates:[String:[String:Float]] = [:]
+    public static var rates:[String:[String:Double]] = [:]
 
-    override func load(key: String) -> [String:Float] {
+    override func load(key: String) -> [String:Double] {
         return InMemoryChangeRateCacheManager.rates[key] ?? [:]
     }
 
-    override func save(key: String, value: [String:Float]) {
+    override func save(key: String, value: [String:Double]) {
         InMemoryChangeRateCacheManager.rates = [key:value]
     }
 }

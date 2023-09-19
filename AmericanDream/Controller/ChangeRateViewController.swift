@@ -15,9 +15,9 @@ class ChangeRateViewController: AbstractController {
     @IBOutlet weak var resultLabel: UILabel!
 
     private let changeRateCalculator = ChangeRateCalculator(
-        url: URL(string: Constants.changeRateApi.endpoint)!,
+        url: URL(string: K.changeRateApi.endpoint)!,
         session: URLSession(configuration: .default),
-        apiKey: Constants.changeRateApi.apiKey,
+        apiKey: K.changeRateApi.apiKey,
         cache: ChangeRateCacheManager()
     )
 
@@ -40,22 +40,20 @@ class ChangeRateViewController: AbstractController {
     }
 
     @IBAction func calculateChangeRate(_ sender: UIButton) {
-        guard let inputRawValue = inputAmount.text, let inputValue = Float(inputRawValue) else {
+        guard let inputRawValue = inputAmount.text, let inputValue = Double(inputRawValue) else {
             showAlert(title: "OK", message: "Veuillez saisir un montant")
             return
         }
 
         startLoading(button: calculateButton)
         changeRateCalculator.calculate(amount: inputValue) { result in
-            DispatchQueue.main.async {
-                switch result {
-                    case .failure(let error):
-                        self.showAlert(title:"OK", message: error.rawValue)
-                    case .success(let result):
-                        let resultAmount = String(format: "%.2f", result)
-                        self.resultLabel.text = "$\(resultAmount)"
-                        self.stopLoading(button: self.calculateButton, text: "CALCULER")
-                }
+            switch result {
+                case .failure(let error):
+                    self.showAlert(title:"OK", message: error.rawValue)
+                case .success(let result):
+                    let resultAmount = String(format: "%.2f", result)
+                    self.resultLabel.text = "$\(resultAmount)"
+                    self.stopLoading(button: self.calculateButton, text: "CALCULER")
             }
         }
     }

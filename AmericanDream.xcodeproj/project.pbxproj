@@ -18,6 +18,7 @@
 		5BBC759E2ABA071A00C97928 /* ChangeRateCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBC759D2ABA071A00C97928 /* ChangeRateCacheManager.swift */; };
 		5BBC75A02ABA10A700C97928 /* InMemoryChangeRateCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBC759F2ABA10A700C97928 /* InMemoryChangeRateCacheManager.swift */; };
 		5BBC75A22ABA14B300C97928 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBC75A12ABA14B300C97928 /* DateHelper.swift */; };
+		5BBC75A42ABA59CA00C97928 /* WeatherServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBC75A32ABA59CA00C97928 /* WeatherServiceTest.swift */; };
 		5BF856C62AA76EF900758782 /* Asap-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5BF856C52AA76EF900758782 /* Asap-Regular.otf */; };
 		5BF856C92AA76F1800758782 /* Montserrat-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5BF856C72AA76F1800758782 /* Montserrat-Regular.otf */; };
 		5BF856CA2AA76F1800758782 /* Montserrat-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5BF856C82AA76F1800758782 /* Montserrat-Bold.otf */; };
@@ -31,7 +32,7 @@
 		5BFA57862AB376B600CA14CE /* UIImageView+load.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFA57852AB376B600CA14CE /* UIImageView+load.swift */; };
 		5BFA57882AB3820500CA14CE /* String+capitalizedSentence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFA57872AB3820500CA14CE /* String+capitalizedSentence.swift */; };
 		5BFA57A92AB3A71A00CA14CE /* ChangeRateCalculatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFA57A82AB3A71A00CA14CE /* ChangeRateCalculatorTest.swift */; };
-		5BFA57AD2AB3AA8A00CA14CE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFA57AC2AB3AA8A00CA14CE /* Constants.swift */; };
+		5BFA57AD2AB3AA8A00CA14CE /* K.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFA57AC2AB3AA8A00CA14CE /* K.swift */; };
 		5BFA57B32AB3B2B300CA14CE /* valid-rates.json in Resources */ = {isa = PBXBuildFile; fileRef = 5BFA57B22AB3B2B300CA14CE /* valid-rates.json */; };
 		5BFA57B52AB45AD900CA14CE /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFA57B42AB45AD900CA14CE /* NetworkError.swift */; };
 		5BFA57B72AB45C3600CA14CE /* AbstractController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFA57B62AB45C3600CA14CE /* AbstractController.swift */; };
@@ -64,6 +65,7 @@
 		5BBC759D2ABA071A00C97928 /* ChangeRateCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeRateCacheManager.swift; sourceTree = "<group>"; };
 		5BBC759F2ABA10A700C97928 /* InMemoryChangeRateCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryChangeRateCacheManager.swift; sourceTree = "<group>"; };
 		5BBC75A12ABA14B300C97928 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
+		5BBC75A32ABA59CA00C97928 /* WeatherServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherServiceTest.swift; sourceTree = "<group>"; };
 		5BC32C122AB9EA36000CC9A1 /* AmericanDream.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = AmericanDream.xctestplan; sourceTree = "<group>"; };
 		5BF856C52AA76EF900758782 /* Asap-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap-Regular.otf"; sourceTree = "<group>"; };
 		5BF856C72AA76F1800758782 /* Montserrat-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.otf"; sourceTree = "<group>"; };
@@ -79,7 +81,7 @@
 		5BFA57872AB3820500CA14CE /* String+capitalizedSentence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+capitalizedSentence.swift"; sourceTree = "<group>"; };
 		5BFA579C2AB3A68100CA14CE /* AmericanDreamTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AmericanDreamTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BFA57A82AB3A71A00CA14CE /* ChangeRateCalculatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeRateCalculatorTest.swift; sourceTree = "<group>"; };
-		5BFA57AC2AB3AA8A00CA14CE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		5BFA57AC2AB3AA8A00CA14CE /* K.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K.swift; sourceTree = "<group>"; };
 		5BFA57B22AB3B2B300CA14CE /* valid-rates.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = "valid-rates.json"; sourceTree = "<group>"; };
 		5BFA57B42AB45AD900CA14CE /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		5BFA57B62AB45C3600CA14CE /* AbstractController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractController.swift; sourceTree = "<group>"; };
@@ -188,7 +190,7 @@
 		5BF856CE2AA7834300758782 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				5BFA57AC2AB3AA8A00CA14CE /* Constants.swift */,
+				5BFA57AC2AB3AA8A00CA14CE /* K.swift */,
 				5BFA57852AB376B600CA14CE /* UIImageView+load.swift */,
 				5BFA57872AB3820500CA14CE /* String+capitalizedSentence.swift */,
 				5BFA57B42AB45AD900CA14CE /* NetworkError.swift */,
@@ -215,6 +217,7 @@
 				5BFA57BA2AB86EDC00CA14CE /* URLProtocolStub.swift */,
 				5BFA57B22AB3B2B300CA14CE /* valid-rates.json */,
 				5BFA57BC2AB87FE700CA14CE /* invalid-rates.json */,
+				5BBC75A32ABA59CA00C97928 /* WeatherServiceTest.swift */,
 			);
 			path = AmericanDreamTests;
 			sourceTree = "<group>";
@@ -328,7 +331,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B571EB22AA644EB0026EAF6 /* WeatherViewController.swift in Sources */,
-				5BFA57AD2AB3AA8A00CA14CE /* Constants.swift in Sources */,
+				5BFA57AD2AB3AA8A00CA14CE /* K.swift in Sources */,
 				5BFA577D2AB34BF600CA14CE /* Translator.swift in Sources */,
 				5B571E9A2AA641B90026EAF6 /* AppDelegate.swift in Sources */,
 				5BFA57B72AB45C3600CA14CE /* AbstractController.swift in Sources */,
@@ -353,6 +356,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BBC75A42ABA59CA00C97928 /* WeatherServiceTest.swift in Sources */,
 				5BBC75A02ABA10A700C97928 /* InMemoryChangeRateCacheManager.swift in Sources */,
 				5BFA57A92AB3A71A00CA14CE /* ChangeRateCalculatorTest.swift in Sources */,
 				5BFA57BB2AB86EDC00CA14CE /* URLProtocolStub.swift in Sources */,
