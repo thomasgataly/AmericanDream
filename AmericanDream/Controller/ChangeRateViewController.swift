@@ -15,9 +15,8 @@ class ChangeRateViewController: AbstractController {
     @IBOutlet weak var resultLabel: UILabel!
 
     private let changeRateCalculator = ChangeRateCalculator(
-        url: URL(string: K.changeRateApi.endpoint)!,
+        urlGenerator: ChangeRateCalculatorUrlGenerator(),
         session: URLSession(configuration: .default),
-        apiKey: K.changeRateApi.apiKey,
         cache: ChangeRateCacheManager()
     )
 

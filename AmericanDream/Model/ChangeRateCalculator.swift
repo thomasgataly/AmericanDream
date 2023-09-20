@@ -8,15 +8,13 @@ import Foundation
 
 final class ChangeRateCalculator {
 
-    var url:URL
+    var urlGenerator:ChangeRateCalculatorUrlGenerator
     var session:URLSession
-    var apiKey:String?
     var cache:ChangeRateCacheManager
 
-    init(url: URL, session: URLSession, apiKey: String?, cache: ChangeRateCacheManager) {
-        self.url = url
+    init(urlGenerator:ChangeRateCalculatorUrlGenerator, session: URLSession, cache: ChangeRateCacheManager) {
+        self.urlGenerator = urlGenerator
         self.session = session
-        self.apiKey = apiKey
         self.cache = cache
     }
 
@@ -31,12 +29,7 @@ final class ChangeRateCalculator {
     }
 
     private func getNewRates(_ amount: Double, _ callback: @escaping (Result<Double, K.changeRateApi.error>) -> Void) {
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        if let apiKey {
-            request.url?.append(queryItems: [URLQueryItem(name: K.changeRateApi.apiKeyParameterName, value: apiKey)])
-        }
-        let task = session.dataTask(with: request) { data, response, error in
+        let task = session.dataTask(with: urlGenerator.generateUrl()) { data, response, error in
             DispatchQueue.main.async {
                 guard let data = data, error == nil else {
                     callback(.failure(K.changeRateApi.error.commonError))

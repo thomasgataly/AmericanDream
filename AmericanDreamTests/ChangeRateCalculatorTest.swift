@@ -9,11 +9,15 @@ import XCTest
 
 final class ChangeRateCalculatorTest: XCTestCase {
 
-    let url = URL(string: "https://url.com")!
+    private var url = URL(string: "https://url.com")!
     private var sut:ChangeRateCalculator!
 
     override func setUp() {
-        sut = ChangeRateCalculator(url:url,session: getSession(), apiKey: nil, cache: InMemoryChangeRateCacheManager())
+        sut = ChangeRateCalculator(
+            urlGenerator:ChangeRateCalculatorUrlGeneratorFake(url: url),
+            session: getSession(),
+            cache: InMemoryChangeRateCacheManager()
+        )
         URLProtocolStub.testURLs = [:]
         URLProtocolStub.testErrorURLs = [:]
         InMemoryChangeRateCacheManager.rates = [:]
