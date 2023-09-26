@@ -11,14 +11,15 @@ import Foundation
 class ChangeRateCalculatorUrlGeneratorFake:ChangeRateCalculatorUrlGenerator {
 
     var url:URL
+
     init(url:URL) {
         self.url = url
     }
 
-    override func generateUrl() -> URLRequest {
+    override func generateUrl() -> URL {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
 
-        return request
+        return request.url!
     }
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class WeatherViewController: AbstractController {
+final class WeatherViewController: UIViewController {
 
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var mainCityName: UILabel!

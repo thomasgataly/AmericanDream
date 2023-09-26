@@ -8,12 +8,12 @@
 import Foundation
 
 class ChangeRateCalculatorUrlGenerator {
-    func generateUrl() -> URLRequest {
+    func generateUrl() -> URL {
         let url = URL(string: K.changeRateApi.endpoint)!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.url?.append(queryItems: [URLQueryItem(name: K.changeRateApi.apiKeyParameterName, value: K.changeRateApi.apiKey)])
 
-        return request
+        return request.url!
     }
 }

@@ -19,7 +19,7 @@ struct Country {
     }
 }
 
-class TranslationViewController: AbstractController {
+class TranslationViewController: UIViewController {
 
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var sourceTextView: UITextView!

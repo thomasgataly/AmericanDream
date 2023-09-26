@@ -12,11 +12,11 @@ class InMemoryChangeRateCacheManager:ChangeRateCacheManager {
 
     public static var rates:[String:[String:Double]] = [:]
 
-    override func load(key: String) -> [String:Double] {
+    override func get(key: String) -> [String:Double] {
         return InMemoryChangeRateCacheManager.rates[key] ?? [:]
     }
 
-    override func save(key: String, value: [String:Double]) {
+    override func set(key: String, value: [String:Double]) {
         InMemoryChangeRateCacheManager.rates = [key:value]
     }
 }

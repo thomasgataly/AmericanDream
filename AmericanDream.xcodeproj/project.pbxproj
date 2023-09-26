@@ -15,6 +15,11 @@
 		5B571EAE2AA6449F0026EAF6 /* ChangeRateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B571EAD2AA6449F0026EAF6 /* ChangeRateViewController.swift */; };
 		5B571EB02AA644D60026EAF6 /* TranslationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B571EAF2AA644D60026EAF6 /* TranslationViewController.swift */; };
 		5B571EB22AA644EB0026EAF6 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B571EB12AA644EB0026EAF6 /* WeatherViewController.swift */; };
+		5BBA5A262AC3121A00064985 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA5A252AC3121A00064985 /* HTTPClient.swift */; };
+		5BBA5A282AC3123400064985 /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA5A272AC3123400064985 /* URLSessionHTTPClient.swift */; };
+		5BBA5A2A2AC31AC300064985 /* HTTPURLResponse+StatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA5A292AC31AC300064985 /* HTTPURLResponse+StatusCode.swift */; };
+		5BBA5A2E2AC3397B00064985 /* UrlProtocolStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA5A2D2AC3397B00064985 /* UrlProtocolStub.swift */; };
+		5BBA5A302AC339E100064985 /* HTTPClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA5A2F2AC339E100064985 /* HTTPClientSpy.swift */; };
 		5BBC759E2ABA071A00C97928 /* ChangeRateCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBC759D2ABA071A00C97928 /* ChangeRateCacheManager.swift */; };
 		5BBC75A02ABA10A700C97928 /* InMemoryChangeRateCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBC759F2ABA10A700C97928 /* InMemoryChangeRateCacheManager.swift */; };
 		5BBC75A22ABA14B300C97928 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBC75A12ABA14B300C97928 /* DateHelper.swift */; };
@@ -37,9 +42,9 @@
 		5BFA57AD2AB3AA8A00CA14CE /* K.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFA57AC2AB3AA8A00CA14CE /* K.swift */; };
 		5BFA57B32AB3B2B300CA14CE /* valid-rates.json in Resources */ = {isa = PBXBuildFile; fileRef = 5BFA57B22AB3B2B300CA14CE /* valid-rates.json */; };
 		5BFA57B52AB45AD900CA14CE /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFA57B42AB45AD900CA14CE /* NetworkError.swift */; };
-		5BFA57B72AB45C3600CA14CE /* AbstractController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFA57B62AB45C3600CA14CE /* AbstractController.swift */; };
+		5BFA57B72AB45C3600CA14CE /* UIViewController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFA57B62AB45C3600CA14CE /* UIViewController+Helpers.swift */; };
 		5BFA57B92AB45FC100CA14CE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFA57B82AB45FC100CA14CE /* NetworkManager.swift */; };
-		5BFA57BB2AB86EDC00CA14CE /* URLProtocolStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFA57BA2AB86EDC00CA14CE /* URLProtocolStub.swift */; };
+		5BFA57BB2AB86EDC00CA14CE /* URLProtocolStub2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFA57BA2AB86EDC00CA14CE /* URLProtocolStub2.swift */; };
 		5BFA57BD2AB87FE700CA14CE /* invalid-rates.json in Resources */ = {isa = PBXBuildFile; fileRef = 5BFA57BC2AB87FE700CA14CE /* invalid-rates.json */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +69,11 @@
 		5B571EAD2AA6449F0026EAF6 /* ChangeRateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeRateViewController.swift; sourceTree = "<group>"; };
 		5B571EAF2AA644D60026EAF6 /* TranslationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationViewController.swift; sourceTree = "<group>"; };
 		5B571EB12AA644EB0026EAF6 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
+		5BBA5A252AC3121A00064985 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
+		5BBA5A272AC3123400064985 /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
+		5BBA5A292AC31AC300064985 /* HTTPURLResponse+StatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPURLResponse+StatusCode.swift"; sourceTree = "<group>"; };
+		5BBA5A2D2AC3397B00064985 /* UrlProtocolStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlProtocolStub.swift; sourceTree = "<group>"; };
+		5BBA5A2F2AC339E100064985 /* HTTPClientSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientSpy.swift; sourceTree = "<group>"; };
 		5BBC759D2ABA071A00C97928 /* ChangeRateCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeRateCacheManager.swift; sourceTree = "<group>"; };
 		5BBC759F2ABA10A700C97928 /* InMemoryChangeRateCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryChangeRateCacheManager.swift; sourceTree = "<group>"; };
 		5BBC75A12ABA14B300C97928 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
@@ -88,9 +98,9 @@
 		5BFA57AC2AB3AA8A00CA14CE /* K.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K.swift; sourceTree = "<group>"; };
 		5BFA57B22AB3B2B300CA14CE /* valid-rates.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = "valid-rates.json"; sourceTree = "<group>"; };
 		5BFA57B42AB45AD900CA14CE /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
-		5BFA57B62AB45C3600CA14CE /* AbstractController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractController.swift; sourceTree = "<group>"; };
+		5BFA57B62AB45C3600CA14CE /* UIViewController+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Helpers.swift"; sourceTree = "<group>"; };
 		5BFA57B82AB45FC100CA14CE /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		5BFA57BA2AB86EDC00CA14CE /* URLProtocolStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolStub.swift; sourceTree = "<group>"; };
+		5BFA57BA2AB86EDC00CA14CE /* URLProtocolStub2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolStub2.swift; sourceTree = "<group>"; };
 		5BFA57BC2AB87FE700CA14CE /* invalid-rates.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = "invalid-rates.json"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -134,6 +144,7 @@
 		5B571E982AA641B90026EAF6 /* AmericanDream */ = {
 			isa = PBXGroup;
 			children = (
+				5BBA5A242AC311FE00064985 /* Infrastructure */,
 				5BF856CE2AA7834300758782 /* Helpers */,
 				5B571EB32AA644F20026EAF6 /* Model */,
 				5B571EB52AA645030026EAF6 /* View */,
@@ -167,7 +178,6 @@
 				5B571EAD2AA6449F0026EAF6 /* ChangeRateViewController.swift */,
 				5B571EAF2AA644D60026EAF6 /* TranslationViewController.swift */,
 				5B571EB12AA644EB0026EAF6 /* WeatherViewController.swift */,
-				5BFA57B62AB45C3600CA14CE /* AbstractController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -179,6 +189,15 @@
 				5B571EA42AA641BB0026EAF6 /* LaunchScreen.storyboard */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		5BBA5A242AC311FE00064985 /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				5BBA5A252AC3121A00064985 /* HTTPClient.swift */,
+				5BBA5A272AC3123400064985 /* URLSessionHTTPClient.swift */,
+			);
+			path = Infrastructure;
 			sourceTree = "<group>";
 		};
 		5BF856CD2AA76F2A00758782 /* Fonts */ = {
@@ -195,11 +214,13 @@
 		5BF856CE2AA7834300758782 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				5BFA57B62AB45C3600CA14CE /* UIViewController+Helpers.swift */,
 				5BFA57AC2AB3AA8A00CA14CE /* K.swift */,
 				5BFA57852AB376B600CA14CE /* UIImageView+load.swift */,
 				5BFA57872AB3820500CA14CE /* String+capitalizedSentence.swift */,
 				5BFA57B42AB45AD900CA14CE /* NetworkError.swift */,
 				5BBC75A12ABA14B300C97928 /* DateHelper.swift */,
+				5BBA5A292AC31AC300064985 /* HTTPURLResponse+StatusCode.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -219,11 +240,13 @@
 			children = (
 				5BFA57A82AB3A71A00CA14CE /* ChangeRateCalculatorTest.swift */,
 				5BBC759F2ABA10A700C97928 /* InMemoryChangeRateCacheManager.swift */,
-				5BFA57BA2AB86EDC00CA14CE /* URLProtocolStub.swift */,
+				5BFA57BA2AB86EDC00CA14CE /* URLProtocolStub2.swift */,
 				5BFA57B22AB3B2B300CA14CE /* valid-rates.json */,
 				5BFA57BC2AB87FE700CA14CE /* invalid-rates.json */,
 				5BBC75A32ABA59CA00C97928 /* WeatherServiceTest.swift */,
 				5BBC75A72ABB0BF800C97928 /* ChangeRateCalculatorUrlGeneratorFake.swift */,
+				5BBA5A2D2AC3397B00064985 /* UrlProtocolStub.swift */,
+				5BBA5A2F2AC339E100064985 /* HTTPClientSpy.swift */,
 			);
 			path = AmericanDreamTests;
 			sourceTree = "<group>";
@@ -340,7 +363,8 @@
 				5BFA57AD2AB3AA8A00CA14CE /* K.swift in Sources */,
 				5BFA577D2AB34BF600CA14CE /* Translator.swift in Sources */,
 				5B571E9A2AA641B90026EAF6 /* AppDelegate.swift in Sources */,
-				5BFA57B72AB45C3600CA14CE /* AbstractController.swift in Sources */,
+				5BBA5A2A2AC31AC300064985 /* HTTPURLResponse+StatusCode.swift in Sources */,
+				5BFA57B72AB45C3600CA14CE /* UIViewController+Helpers.swift in Sources */,
 				5B571EAE2AA6449F0026EAF6 /* ChangeRateViewController.swift in Sources */,
 				5BBC759E2ABA071A00C97928 /* ChangeRateCacheManager.swift in Sources */,
 				5B571E9C2AA641B90026EAF6 /* SceneDelegate.swift in Sources */,
@@ -353,6 +377,8 @@
 				5BF856D22AA79B7E00758782 /* ChangeRateCalculator.swift in Sources */,
 				5BFA57802AB352A400CA14CE /* Translation.swift in Sources */,
 				5BFA57B52AB45AD900CA14CE /* NetworkError.swift in Sources */,
+				5BBA5A282AC3123400064985 /* URLSessionHTTPClient.swift in Sources */,
+				5BBA5A262AC3121A00064985 /* HTTPClient.swift in Sources */,
 				5BFA57822AB36B5600CA14CE /* Weather.swift in Sources */,
 				5BF856D62AA7AA8F00758782 /* ChangeRate.swift in Sources */,
 				5BBC75A62ABB0AB500C97928 /* ChangeRateCalculatorUrlGenerator.swift in Sources */,
@@ -366,8 +392,10 @@
 				5BBC75A42ABA59CA00C97928 /* WeatherServiceTest.swift in Sources */,
 				5BBC75A82ABB0BF800C97928 /* ChangeRateCalculatorUrlGeneratorFake.swift in Sources */,
 				5BBC75A02ABA10A700C97928 /* InMemoryChangeRateCacheManager.swift in Sources */,
+				5BBA5A2E2AC3397B00064985 /* UrlProtocolStub.swift in Sources */,
 				5BFA57A92AB3A71A00CA14CE /* ChangeRateCalculatorTest.swift in Sources */,
-				5BFA57BB2AB86EDC00CA14CE /* URLProtocolStub.swift in Sources */,
+				5BBA5A302AC339E100064985 /* HTTPClientSpy.swift in Sources */,
+				5BFA57BB2AB86EDC00CA14CE /* URLProtocolStub2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

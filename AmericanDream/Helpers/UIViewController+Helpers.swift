@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AbstractController:UIViewController {
+extension UIViewController {
     func showAlert(title:String, message:String) {
         let alertVC = UIAlertController(
             title: nil,

@@ -5,9 +5,9 @@
 //  Created by Thomas Gataly on 18/09/2023.
 //
 
-import UIKit
+import Foundation
 
-class URLProtocolStub: URLProtocol {
+class URLProtocolStub2: URLProtocol {
     // this dictionary maps URLs to test data
     static var testURLs = [URL?: Data]()
     static var testErrorURLs = [URL?: Error]()
@@ -26,11 +26,11 @@ class URLProtocolStub: URLProtocol {
         // if we have a valid URL…
         if let url = request.url {
             // …and if we have test data or error for that URL…
-            if let data = URLProtocolStub.testURLs[url] {
+            if let data = URLProtocolStub2.testURLs[url] {
                 // …load it immediately.
                 self.client?.urlProtocol(self, didLoad: data)
             }
-            if let error = URLProtocolStub.testErrorURLs[url] {
+            if let error = URLProtocolStub2.testErrorURLs[url] {
                 // …load it immediately.
                 self.client?.urlProtocol(self, didFailWithError: error)
             }
