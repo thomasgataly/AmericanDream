@@ -7,13 +7,13 @@
 
 import Foundation
 
-class ChangeRateCacheManager {
+class ChangeRateCache {
 
-    func load(key:String) -> [String:Double] {
+    func get(key:String) -> [String:Double] {
         return UserDefaults.standard.object(forKey: key) as? [String:Double] ?? [:]
     }
 
-    func save(key:String, value:[String:Double]) {
+    func set(key:String, value:[String:Double]) {
         UserDefaults.standard.set(value, forKey: key)
     }
 }

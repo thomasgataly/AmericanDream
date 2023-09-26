@@ -19,7 +19,7 @@ struct Country {
     }
 }
 
-class TranslationViewController: AbstractController {
+final class TranslationViewController: UIViewController {
 
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var sourceTextView: UITextView!
@@ -35,11 +35,7 @@ class TranslationViewController: AbstractController {
         Country(shortCode: "en", name: "Anglais", flag: UIImage(named: "us")!)
     ]
 
-    private let translator = Translator(
-        url: URL(string: K.translatorApi.endpoint)!,
-        session: URLSession(configuration: .default),
-        apiKey: K.translatorApi.apiKey
-    )
+    private let translator = TranslationService(urlGenerator: TranslationUrlGenerator(),session: URLSession(configuration: .default))
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -64,7 +60,7 @@ class TranslationViewController: AbstractController {
 
     @IBAction func onTranslateButtonPressed(_ sender: UIButton) {
         if sourceTextView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-            showAlert(title: "OK", message: "Veuillez saisir un texte à traduire")
+            showAlert(title: K.common.ok, message: K.translator.strings.requestText)
             return
         }
 
@@ -75,11 +71,11 @@ class TranslationViewController: AbstractController {
             DispatchQueue.main.async {
                 switch result {
                     case .failure(let error):
-                        self.showAlert(title: "OK", message: error.rawValue)
-                        self.stopLoading(button: self.translateButton, text: "TRADUIRE")
+                        self.showAlert(title: K.common.ok, message: error.rawValue)
+                    self.stopLoading(button: self.translateButton, text: K.translator.strings.cta)
                     case .success(let translatedText):
                         self.targetTextView.text = translatedText
-                        self.stopLoading(button: self.translateButton, text: "TRADUIRE")
+                        self.stopLoading(button: self.translateButton, text: K.translator.strings.cta)
                 }
             }
         }

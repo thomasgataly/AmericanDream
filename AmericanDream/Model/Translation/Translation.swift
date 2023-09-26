@@ -5,7 +5,6 @@
 //  Created by Thomas Gataly on 14/09/2023.
 //
 
-
 struct Translation: Decodable {
     let data: Translations
 

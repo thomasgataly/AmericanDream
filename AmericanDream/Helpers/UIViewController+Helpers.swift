@@ -1,13 +1,14 @@
 //
-//  AbstractController.swift
+//  UIViewController+Helpers.swift
 //  AmericanDream
 //
-//  Created by Thomas Gataly on 15/09/2023.
+//  Created by Thomas Gataly on 26/09/2023.
 //
 
+import Foundation
 import UIKit
 
-class AbstractController:UIViewController {
+extension UIViewController {
     func showAlert(title:String, message:String) {
         let alertVC = UIAlertController(
             title: nil,

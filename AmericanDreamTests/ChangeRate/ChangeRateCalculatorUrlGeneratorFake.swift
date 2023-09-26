@@ -8,10 +8,9 @@
 import Foundation
 @testable import AmericanDream
 
-class ChangeRateCalculatorUrlGeneratorFake:ChangeRateCalculatorUrlGenerator {
-
-    var url:URL
-    init(url:URL) {
+class ChangeRateCalculatorUrlGeneratorFake: ChangeRateUrlGenerator {
+    var url: URL
+    init(url: URL) {
         self.url = url
     }
 

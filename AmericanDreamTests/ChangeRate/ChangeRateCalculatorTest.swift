@@ -10,12 +10,14 @@ import XCTest
 final class ChangeRateCalculatorTest: XCTestCase {
 
     private var url = URL(string: "https://url.com")!
-    private var sut:ChangeRateCalculator!
+    private var sut:ChangeRateService!
 
     override func setUp() {
-        sut = ChangeRateCalculator(
+        let config = URLSessionConfiguration.ephemeral
+        config.protocolClasses = [URLProtocolStub.self]
+        sut = ChangeRateService(
             urlGenerator:ChangeRateCalculatorUrlGeneratorFake(url: url),
-            session: getSession(),
+            session: URLSession(configuration: config),
             cache: InMemoryChangeRateCacheManager()
         )
         URLProtocolStub.testURLs = [:]
@@ -32,7 +34,7 @@ final class ChangeRateCalculatorTest: XCTestCase {
         sut.calculate(amount: 10.0) { result in
             //Then
             guard case .failure(let failure) = result else { return XCTFail() }
-            XCTAssertEqual(failure, K.changeRateApi.error.decodingError)
+            XCTAssertEqual(failure, K.changeRate.error.decodingError)
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 0.1)
@@ -40,7 +42,7 @@ final class ChangeRateCalculatorTest: XCTestCase {
 
     func testInvalidDataReturnsMissingCurrencyError() {
         //Given
-        guard let invalidJsonData = readLocalJSONFile(forName: "invalid-rates") else { return XCTFail("file not found") }
+        guard let invalidJsonData = readLocalJSONFile(forName: "invalid-rates", fromClass: ChangeRateCalculatorTest.self) else { return XCTFail("file not found") }
         URLProtocolStub.testURLs = [url: invalidJsonData]
         let expectation = XCTestExpectation(description: "wait...")
 
@@ -48,7 +50,7 @@ final class ChangeRateCalculatorTest: XCTestCase {
         sut.calculate(amount: 10.0) { result in
             //Then
             guard case .failure(let failure) = result else { return XCTFail() }
-            XCTAssertEqual(failure, K.changeRateApi.error.missingCurrency)
+            XCTAssertEqual(failure, K.changeRate.error.missingCurrency)
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 0.1)
@@ -63,7 +65,7 @@ final class ChangeRateCalculatorTest: XCTestCase {
         sut.calculate(amount: 10.0) { result in
             //Then
             guard case .failure(let failure) = result else { return XCTFail() }
-            XCTAssertEqual(failure, K.changeRateApi.error.commonError)
+            XCTAssertEqual(failure, K.changeRate.error.commonError)
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 0.1)
@@ -71,7 +73,7 @@ final class ChangeRateCalculatorTest: XCTestCase {
 
     func testCorrectDataReturnsConvertedAmountAndSaveInCache() {
         //Given
-        guard let jsonData = readLocalJSONFile(forName: "valid-rates") else { return XCTFail("file not found") }
+        guard let jsonData = readLocalJSONFile(forName: "valid-rates", fromClass: ChangeRateCalculatorTest.self) else { return XCTFail("file not found") }
         URLProtocolStub.testURLs = [url: jsonData]
         let amount = 10.0
         let rateFileUSDRate = 1.066906
@@ -100,7 +102,7 @@ final class ChangeRateCalculatorTest: XCTestCase {
 
     func testCorrectDataReturnsConvertedAmountFromCache() {
         //Given
-        guard let jsonData = readLocalJSONFile(forName: "valid-rates") else { return XCTFail("file not found") }
+        guard let jsonData = readLocalJSONFile(forName: "valid-rates", fromClass: ChangeRateCalculatorTest.self) else { return XCTFail("file not found") }
         URLProtocolStub.testURLs = [url: jsonData]
         let amount = 10.0
         let rateFileUSDRate = 1.066906
@@ -127,11 +129,5 @@ final class ChangeRateCalculatorTest: XCTestCase {
         let config = URLSessionConfiguration.ephemeral
         config.protocolClasses = [URLProtocolStub.self]
         return URLSession(configuration: config)
-    }
-
-    private func readLocalJSONFile(forName name: String) -> Data? {
-        let bundle = Bundle(for: ChangeRateCalculatorTest.self)
-        let url = bundle.url(forResource: name, withExtension: "json")!
-        return try! Data(contentsOf: url)
     }
 }

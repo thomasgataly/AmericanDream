@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class WeatherViewController: AbstractController {
+final class WeatherViewController: UIViewController {
 
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var mainCityName: UILabel!
@@ -25,17 +25,13 @@ final class WeatherViewController: AbstractController {
 
     @IBAction func searchButtonPressed(_ sender: UIButton) {
         guard let cityName = cityInput.text else {
-            showAlert(title: "OK", message: "Veuillez saisir le nom d'une ville")
+            showAlert(title: K.common.ok, message: K.weather.strings.requestCity)
             return
         }
         searchCityWeather(cityName: cityName)
     }
 
-    private let weatherService = WeatherService(
-        url: URL(string: K.weatherApi.endpoint)!,
-        session: URLSession(configuration: .default),
-        apiKey: K.weatherApi.apiKey
-    )
+    private let weatherService = WeatherService(urlGenerator: WeatherUrlGenerator(),session: URLSession(configuration: .default))
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -53,18 +49,18 @@ final class WeatherViewController: AbstractController {
 
     private func searchMainCityWeather() {
         startLoading(button: searchButton)
-        weatherService.getWeather(cityName: "New York") { result in
+        weatherService.getWeather(cityName: K.weather.strings.mainCity) { result in
             DispatchQueue.main.async {
                 switch result {
                 case .failure(let error):
-                    self.showAlert(title: "OK", message: error.rawValue)
-                    self.stopLoading(button: self.searchButton, text: "OK")
+                    self.showAlert(title: K.common.ok, message: error.rawValue)
+                    self.stopLoading(button: self.searchButton, text: K.common.ok)
                 case.success(let weather):
-                    self.mainCityName.text = "New York"
+                    self.mainCityName.text = K.weather.strings.mainCity
                     self.mainCityWeatherDescription.text = weather.weather[0].description.capitalizedSentence
                     self.mainCityTemperature.text = "\(String(format: "%.0f", weather.temperature.temp)) °C"
                     self.mainCityWeatherIcon.load(url: URL(string: "https://openweathermap.org/img/wn/\(weather.weather[0].icon)@2x.png")!)
-                    self.stopLoading(button: self.searchButton, text: "OK")
+                    self.stopLoading(button: self.searchButton, text: K.common.ok)
                 }
             }
         }
@@ -76,14 +72,14 @@ final class WeatherViewController: AbstractController {
             DispatchQueue.main.async {
                 switch result {
                 case .failure(let error):
-                    self.showAlert(title: "OK", message: error.rawValue)
-                    self.stopLoading(button: self.searchButton, text: "OK")
+                    self.showAlert(title: K.common.ok, message: error.rawValue)
+                    self.stopLoading(button: self.searchButton, text: K.common.ok)
                 case.success(let weather):
                     self.cityName.text = cityName.capitalizedSentence
                     self.cityWeatherDescription.text = weather.weather[0].description.capitalizedSentence
                     self.cityTemperature.text = "\(String(format: "%.0f", weather.temperature.temp)) °C"
                     self.cityWeatherIcon.load(url: URL(string: "https://openweathermap.org/img/wn/\(weather.weather[0].icon)@2x.png")!)
-                    self.stopLoading(button: self.searchButton, text: "OK")
+                    self.stopLoading(button: self.searchButton, text: K.common.ok)
                     self.cityInput.text?.removeAll()
                 }
             }

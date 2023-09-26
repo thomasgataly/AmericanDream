@@ -7,17 +7,17 @@
 
 import UIKit
 
-class ChangeRateViewController: AbstractController {
+class ChangeRateViewController: UIViewController {
 
     @IBOutlet weak var inputAmount: UITextField!
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var calculateButton: UIButton!
     @IBOutlet weak var resultLabel: UILabel!
 
-    private let changeRateCalculator = ChangeRateCalculator(
-        urlGenerator: ChangeRateCalculatorUrlGenerator(),
+    private let changeRateCalculator = ChangeRateService(
+        urlGenerator: ChangeRateUrlGenerator(),
         session: URLSession(configuration: .default),
-        cache: ChangeRateCacheManager()
+        cache: ChangeRateCache()
     )
 
     override func viewDidLoad() {
@@ -40,7 +40,7 @@ class ChangeRateViewController: AbstractController {
 
     @IBAction func calculateChangeRate(_ sender: UIButton) {
         guard let inputRawValue = inputAmount.text, let inputValue = Double(inputRawValue) else {
-            showAlert(title: "OK", message: "Veuillez saisir un montant")
+            showAlert(title: K.common.ok, message: K.changeRate.strings.requestAmount)
             return
         }
 
@@ -48,11 +48,11 @@ class ChangeRateViewController: AbstractController {
         changeRateCalculator.calculate(amount: inputValue) { result in
             switch result {
                 case .failure(let error):
-                    self.showAlert(title:"OK", message: error.rawValue)
+                self.showAlert(title:K.common.ok, message: error.rawValue)
                 case .success(let result):
                     let resultAmount = String(format: "%.2f", result)
                     self.resultLabel.text = "$\(resultAmount)"
-                    self.stopLoading(button: self.calculateButton, text: "CALCULER")
+                self.stopLoading(button: self.calculateButton, text: K.changeRate.strings.cta)
             }
         }
     }

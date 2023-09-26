@@ -1,0 +1,43 @@
+{
+    "coord": {
+        "lon": 2.6068,
+        "lat": 48.7981
+    },
+    "weather": [
+        {
+            "id": 800,
+            "main": "Clear",
+            "description": "clear sky",
+            "icon": "01n"
+        }
+    ],
+    "base": "stations",
+    "main": {
+        "temp": 290.25,
+        "feels_like": 290,
+        "temp_min": 287.47,
+        "temp_max": 292.22,
+        "pressure": 1020,
+        "humidity": 76
+    },
+    "visibility": 10000,
+    "wind": {
+        "speed": 2.57,
+        "deg": 270
+    },
+    "clouds": {
+        "all": 0
+    },
+    "dt": 1695765652,
+    "sys": {
+        "type": 2,
+        "id": 2077356,
+        "country": "FR",
+        "sunrise": 1695793351,
+        "sunset": 1695836331
+    },
+    "timezone": 7200,
+    "id": 3024195,
+    "name": "Pontault-Combault",
+    "cod": 200
+}
