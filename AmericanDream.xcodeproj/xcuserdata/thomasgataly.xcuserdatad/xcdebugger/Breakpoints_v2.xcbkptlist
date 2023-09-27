@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "4AF4AA96-C026-4536-AD82-F23D44BB6406"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EBAB34CE-C7D5-4FE7-8457-44CAE4808E09"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AmericanDreamTests/InMemoryChangeRateCacheManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "set(key:value:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CE5832A3-0F13-4730-A2AE-9661B305BF48"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AmericanDream/Model/WeatherService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "getWeather(cityName:_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "CE5832A3-0F13-4730-A2AE-9661B305BF48 - 94681e0b90bc9d0f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in AmericanDream.WeatherService.getWeather(cityName: Swift.String, _: (Swift.Result&lt;AmericanDream.Weather, AmericanDream.K.weatherApi.error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "AmericanDream"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/thomasgataly/dev/AmericanDream/AmericanDream/Model/WeatherService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "152">
+               </Location>
+               <Location
+                  uuid = "CE5832A3-0F13-4730-A2AE-9661B305BF48 - 94681e0b90bc9d0f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in AmericanDream.WeatherService.getWeather(cityName: Swift.String, _: (Swift.Result&lt;AmericanDream.Weather, AmericanDream.K.weatherApi.error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "AmericanDream"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/thomasgataly/dev/AmericanDream/AmericanDream/Model/WeatherService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "204">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "690B76C7-1FA3-4E6B-B305-A69C5336A839"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AmericanDream/Model/WeatherService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "getWeather(cityName:_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "690B76C7-1FA3-4E6B-B305-A69C5336A839 - 40eaf030d843d9f2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AmericanDream.WeatherService.getWeather(cityName: Swift.String, _: (Swift.Result&lt;AmericanDream.Weather, AmericanDream.K.weatherApi.error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "AmericanDream"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/thomasgataly/dev/AmericanDream/AmericanDream/Model/WeatherService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "1360">
+               </Location>
+               <Location
+                  uuid = "690B76C7-1FA3-4E6B-B305-A69C5336A839 - 94681e0b90bc9d2e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in AmericanDream.WeatherService.getWeather(cityName: Swift.String, _: (Swift.Result&lt;AmericanDream.Weather, AmericanDream.K.weatherApi.error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "AmericanDream"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/thomasgataly/dev/AmericanDream/AmericanDream/Model/WeatherService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "140">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6499D155-EF7C-407F-9A95-93F42E180D57"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AmericanDream/Model/ChangeRateCalculator.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "calculate(amount:callback:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "6499D155-EF7C-407F-9A95-93F42E180D57 - 3912df3692b73ecc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AmericanDream.ChangeRateCalculator.calculate(amount: Swift.Double, callback: (Swift.Result&lt;Swift.Double, AmericanDream.K.changeRateApi.error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "AmericanDream"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/thomasgataly/dev/AmericanDream/AmericanDream/Model/ChangeRateCalculator.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "104">
+               </Location>
+               <Location
+                  uuid = "6499D155-EF7C-407F-9A95-93F42E180D57 - aecd2440f7bf6eb8"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AmericanDream.ChangeRateCalculator.calculate(amount: Swift.Double, callback: (Swift.Result&lt;Swift.Double, AmericanDream.K.changeRate.error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "AmericanDream"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/thomasgataly/dev/AmericanDream/AmericanDream/Model/ChangeRateCalculator.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "104">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
