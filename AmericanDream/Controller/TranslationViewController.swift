@@ -67,7 +67,8 @@ final class TranslationViewController: UIViewController {
         startLoading(button: translateButton)
         let source = translationDirection[0].shortCode
         let target = translationDirection[1].shortCode
-        translator.translate(text:sourceTextView.text, source: source, target: target) { result in
+        translator.translate(text:sourceTextView.text, source: source, target: target) { [weak self] result in
+            guard let self else { return }
             DispatchQueue.main.async {
                 switch result {
                     case .failure(let error):

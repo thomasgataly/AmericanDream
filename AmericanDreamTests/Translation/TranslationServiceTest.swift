@@ -31,7 +31,7 @@ final class TranslationServiceTest:XCTestCase {
         sut.translate(text: "bonjour", source: "fr", target: "en") { result in
             //Then
             guard case .failure(let failure) = result else { return XCTFail() }
-            XCTAssertEqual(failure, NetworkError.decodingError)
+            XCTAssertEqual(failure, K.translator.error.decodingError)
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 0.1)
@@ -46,7 +46,7 @@ final class TranslationServiceTest:XCTestCase {
         sut.translate(text: "bonjour", source: "fr", target: "en") { result in
             //Then
             guard case .failure(let failure) = result else { return XCTFail() }
-            XCTAssertEqual(failure, NetworkError.commonError)
+            XCTAssertEqual(failure, K.translator.error.commonError)
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 0.1)

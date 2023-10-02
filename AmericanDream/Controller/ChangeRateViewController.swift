@@ -45,7 +45,8 @@ class ChangeRateViewController: UIViewController {
         }
 
         startLoading(button: calculateButton)
-        changeRateCalculator.calculate(amount: inputValue) { result in
+        changeRateCalculator.calculate(amount: inputValue) { [weak self] result in
+            guard let self else { return }
             switch result {
                 case .failure(let error):
                 self.showAlert(title:K.common.ok, message: error.rawValue)
