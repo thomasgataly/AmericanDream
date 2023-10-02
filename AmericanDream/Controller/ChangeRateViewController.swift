@@ -45,14 +45,17 @@ class ChangeRateViewController: UIViewController {
         }
 
         startLoading(button: calculateButton)
-        changeRateCalculator.calculate(amount: inputValue) { result in
-            switch result {
-                case .failure(let error):
-                self.showAlert(title:K.common.ok, message: error.rawValue)
-                case .success(let result):
-                    let resultAmount = String(format: "%.2f", result)
-                    self.resultLabel.text = "$\(resultAmount)"
-                self.stopLoading(button: self.calculateButton, text: K.changeRate.strings.cta)
+        changeRateCalculator.calculate(amount: inputValue) { [weak self] result in
+            guard let self else { return }
+            DispatchQueue.main.async {
+                switch result {
+                    case .failure(let error):
+                    self.showAlert(title:K.common.ok, message: error.rawValue)
+                    case .success(let result):
+                        let resultAmount = String(format: "%.2f", result)
+                        self.resultLabel.text = "$\(resultAmount)"
+                    self.stopLoading(button: self.calculateButton, text: K.changeRate.strings.cta)
+                }
             }
         }
     }

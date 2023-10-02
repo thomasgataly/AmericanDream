@@ -18,20 +18,20 @@ final class TranslationServiceTest:XCTestCase {
         let config = URLSessionConfiguration.ephemeral
         config.protocolClasses = [URLProtocolStub.self]
         sut = TranslationService(urlGenerator: TranslationServiceUrlGeneratorFake(url: url), session: URLSession(configuration: config))
-        URLProtocolStub.testURLs = [:]
-        URLProtocolStub.testErrorURLs = [:]
+        URLProtocolStub.data = [:]
+        URLProtocolStub.error = [:]
     }
 
     func testWrongDataReturnsDecodingError() {
         //Given
-        URLProtocolStub.testURLs = [url: Data("Wrong data".utf8)]
+        URLProtocolStub.data = [url: Data("Wrong data".utf8)]
         let expectation = XCTestExpectation(description: "wait...")
 
         //When
         sut.translate(text: "bonjour", source: "fr", target: "en") { result in
             //Then
             guard case .failure(let failure) = result else { return XCTFail() }
-            XCTAssertEqual(failure, NetworkError.decodingError)
+            XCTAssertEqual(failure, K.translator.error.decodingError)
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 0.1)
@@ -39,14 +39,14 @@ final class TranslationServiceTest:XCTestCase {
 
     func testNetworkErrorReturnsGenericError() {
         //Given
-        URLProtocolStub.testErrorURLs = [url: URLError(URLError.Code(rawValue: 500))]
+        URLProtocolStub.error = [url: URLError(URLError.Code(rawValue: 500))]
         let expectation = XCTestExpectation(description: "wait...")
 
         //When
         sut.translate(text: "bonjour", source: "fr", target: "en") { result in
             //Then
             guard case .failure(let failure) = result else { return XCTFail() }
-            XCTAssertEqual(failure, NetworkError.commonError)
+            XCTAssertEqual(failure, K.translator.error.commonError)
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 0.1)
@@ -55,7 +55,7 @@ final class TranslationServiceTest:XCTestCase {
     func testCorrectDataReturnsTranslatedText() {
         //Given
         guard let jsonData = readLocalJSONFile(forName: "valid-translation", fromClass: TranslationServiceTest.self) else { return XCTFail("file not found") }
-        URLProtocolStub.testURLs = [url: jsonData]
+        URLProtocolStub.data = [url: jsonData]
         let expectation = XCTestExpectation(description: "wait...")
 
         //When

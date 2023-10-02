@@ -49,7 +49,8 @@ final class WeatherViewController: UIViewController {
 
     private func searchMainCityWeather() {
         startLoading(button: searchButton)
-        weatherService.getWeather(cityName: K.weather.strings.mainCity) { result in
+        weatherService.getWeather(cityName: K.weather.strings.mainCity) { [weak self] result in
+            guard let self else { return }
             DispatchQueue.main.async {
                 switch result {
                 case .failure(let error):
@@ -68,7 +69,8 @@ final class WeatherViewController: UIViewController {
 
     private func searchCityWeather(cityName: String) {
         startLoading(button: searchButton)
-        weatherService.getWeather(cityName: cityName) { result in
+        weatherService.getWeather(cityName: cityName) { [weak self] result in
+            guard let self else { return }
             DispatchQueue.main.async {
                 switch result {
                 case .failure(let error):

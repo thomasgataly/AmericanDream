@@ -17,17 +17,17 @@ final class TranslationService {
         self.session = session
     }
 
-    func translate(text: String, source:String, target:String, _ callback: @escaping (Result<String, K.weather.error>) -> Void) {
+    func translate(text: String, source:String, target:String, _ callback: @escaping (Result<String, K.translator.error>) -> Void) {
         let request = urlGenerator.generateUrl(text: text, source: source, target: target)
         let task = session.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {
-                return callback(.failure(K.weather.error.commonError))
+                return callback(.failure(K.translator.error.commonError))
             }
             do {
                 let translation = try JSONDecoder().decode(Translation.self, from: data)
                 callback(.success(translation.data.translations[0].translatedText))
             } catch {
-                callback(.failure(K.weather.error.decodingError))
+                callback(.failure(K.translator.error.decodingError))
             }
         }
         task.resume()

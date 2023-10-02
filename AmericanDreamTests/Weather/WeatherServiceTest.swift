@@ -16,13 +16,13 @@ final class WeatherServiceTest:XCTestCase {
         let config = URLSessionConfiguration.ephemeral
         config.protocolClasses = [URLProtocolStub.self]
         sut = WeatherService(urlGenerator: WeatherServiceUrlGeneratorFake(url: url) ,session: URLSession(configuration: config))
-        URLProtocolStub.testURLs = [:]
-        URLProtocolStub.testErrorURLs = [:]
+        URLProtocolStub.data = [:]
+        URLProtocolStub.error = [:]
     }
 
     func testNetworkErrorReturnsGenericError() {
         //Given
-        URLProtocolStub.testErrorURLs = [url: URLError(URLError.Code(rawValue: 500))]
+        URLProtocolStub.response = [url: HTTPURLResponse(url: url, statusCode: 500, httpVersion: nil, headerFields: [:])!]
         let expectation = XCTestExpectation(description: "wait...")
 
         //When
@@ -37,14 +37,14 @@ final class WeatherServiceTest:XCTestCase {
 
     func testMissingCityReturnsMissingCityError() {
         //Given
-        URLProtocolStub.testErrorURLs = [url: URLError(URLError.Code(rawValue: 404))]
+        URLProtocolStub.response = [url: HTTPURLResponse(url: url, statusCode: 404, httpVersion: nil, headerFields: [:])!]
         let expectation = XCTestExpectation(description: "wait...")
 
         //When
         sut.getWeather(cityName: "notFoundableCity") { result in
             //Then
             guard case .failure(let failure) = result else { return XCTFail() }
-            XCTAssertEqual(failure, K.weather.error.missingCity)
+            XCTAssertEqual(failure, K.weather.error.notFoundCity)
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 0.1)
@@ -52,14 +52,14 @@ final class WeatherServiceTest:XCTestCase {
 
     func testNotFoundCityReturnsNotFoundError() {
         //Given
-        URLProtocolStub.testErrorURLs = [url: URLError(URLError.Code(rawValue: 400))]
+        URLProtocolStub.response = [url: HTTPURLResponse(url: url, statusCode: 400, httpVersion: nil, headerFields: [:])!]
         let expectation = XCTestExpectation(description: "wait...")
 
         //When
         sut.getWeather(cityName: "") { result in
             //Then
             guard case .failure(let failure) = result else { return XCTFail() }
-            XCTAssertEqual(failure, K.weather.error.notFoundCity)
+            XCTAssertEqual(failure, K.weather.error.badRequest)
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 0.1)
@@ -68,7 +68,7 @@ final class WeatherServiceTest:XCTestCase {
 
     func testInvalidDataReturnsDecodingError() {
         //Given
-        URLProtocolStub.testURLs = [url: Data("Wrong data".utf8)]
+        URLProtocolStub.data = [url: Data("Wrong data".utf8)]
         let expectation = XCTestExpectation(description: "wait...")
 
         //When
@@ -83,7 +83,7 @@ final class WeatherServiceTest:XCTestCase {
 
     func testOkReturnsWeather() {
         guard let jsonData = readLocalJSONFile(forName: "weather-200", fromClass: WeatherServiceTest.self) else { return XCTFail("file not found") }
-        URLProtocolStub.testURLs = [url: jsonData]
+        URLProtocolStub.data = [url: jsonData]
         let expectation = XCTestExpectation(description: "wait...")
 
         //When

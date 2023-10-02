@@ -20,14 +20,14 @@ final class ChangeRateCalculatorTest: XCTestCase {
             session: URLSession(configuration: config),
             cache: InMemoryChangeRateCacheManager()
         )
-        URLProtocolStub.testURLs = [:]
-        URLProtocolStub.testErrorURLs = [:]
+        URLProtocolStub.data = [:]
+        URLProtocolStub.error = [:]
         InMemoryChangeRateCacheManager.rates = [:]
     }
 
     func testWrongDataReturnsDecodingError() {
         //Given
-        URLProtocolStub.testURLs = [url: Data("Wrong data".utf8)]
+        URLProtocolStub.data = [url: Data("Wrong data".utf8)]
         let expectation = XCTestExpectation(description: "wait...")
 
         //When
@@ -43,7 +43,7 @@ final class ChangeRateCalculatorTest: XCTestCase {
     func testInvalidDataReturnsMissingCurrencyError() {
         //Given
         guard let invalidJsonData = readLocalJSONFile(forName: "invalid-rates", fromClass: ChangeRateCalculatorTest.self) else { return XCTFail("file not found") }
-        URLProtocolStub.testURLs = [url: invalidJsonData]
+        URLProtocolStub.data = [url: invalidJsonData]
         let expectation = XCTestExpectation(description: "wait...")
 
         //When
@@ -58,7 +58,7 @@ final class ChangeRateCalculatorTest: XCTestCase {
 
     func testNetworkErrorReturnsGenericError() {
         //Given
-        URLProtocolStub.testErrorURLs = [url: URLError(URLError.Code(rawValue: 500))]
+        URLProtocolStub.error = [url: URLError(URLError.Code(rawValue: 500))]
         let expectation = XCTestExpectation(description: "wait...")
 
         //When
@@ -74,7 +74,7 @@ final class ChangeRateCalculatorTest: XCTestCase {
     func testCorrectDataReturnsConvertedAmountAndSaveInCache() {
         //Given
         guard let jsonData = readLocalJSONFile(forName: "valid-rates", fromClass: ChangeRateCalculatorTest.self) else { return XCTFail("file not found") }
-        URLProtocolStub.testURLs = [url: jsonData]
+        URLProtocolStub.data = [url: jsonData]
         let amount = 10.0
         let rateFileUSDRate = 1.066906
         let rateFileAEDRate = 3.918782
@@ -103,7 +103,7 @@ final class ChangeRateCalculatorTest: XCTestCase {
     func testCorrectDataReturnsConvertedAmountFromCache() {
         //Given
         guard let jsonData = readLocalJSONFile(forName: "valid-rates", fromClass: ChangeRateCalculatorTest.self) else { return XCTFail("file not found") }
-        URLProtocolStub.testURLs = [url: jsonData]
+        URLProtocolStub.data = [url: jsonData]
         let amount = 10.0
         let rateFileUSDRate = 1.066906
         let expectedResult = amount * rateFileUSDRate

@@ -30,22 +30,20 @@ final class ChangeRateService {
 
     private func getNewRates(_ amount: Double, _ callback: @escaping (Result<Double, K.changeRate.error>) -> Void) {
         let task = session.dataTask(with: urlGenerator.generateUrl()) { data, response, error in
-            DispatchQueue.main.async {
-                guard let data = data, error == nil else {
-                    callback(.failure(K.changeRate.error.commonError))
-                    return
+            guard let data = data, error == nil else {
+                callback(.failure(K.changeRate.error.commonError))
+                return
+            }
+            do {
+                let changeRate = try JSONDecoder().decode(ChangeRate.self, from: data)
+                self.cache.set(key: changeRate.dateText, value: changeRate.rates)
+                if let usdRate = changeRate.rates[K.changeRate.strings.targetCurrency] {
+                    callback(.success(amount * usdRate))
+                } else {
+                    callback(.failure(K.changeRate.error.missingCurrency))
                 }
-                do {
-                    let changeRate = try JSONDecoder().decode(ChangeRate.self, from: data)
-                    self.cache.set(key: changeRate.dateText, value: changeRate.rates)
-                    if let usdRate = changeRate.rates[K.changeRate.strings.targetCurrency] {
-                        callback(.success(amount * usdRate))
-                    } else {
-                        callback(.failure(K.changeRate.error.missingCurrency))
-                    }
-                } catch {
-                    callback(.failure(K.changeRate.error.decodingError))
-                }
+            } catch {
+                callback(.failure(K.changeRate.error.decodingError))
             }
         }
         task.resume()

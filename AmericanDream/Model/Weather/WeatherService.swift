@@ -19,23 +19,22 @@ final class WeatherService {
 
     func getWeather(cityName: String, _ callback: @escaping (Result<Weather, K.weather.error>) -> Void) {
         let task = session.dataTask(with: urlGenerator.generateUrl(cityName: cityName)) { data, response, error in
-            if let error = error as? URLError {
-                switch (error.code.rawValue) {
-                case 400:
-                    return callback(.failure(K.weather.error.notFoundCity))
-                case 404:
-                    return callback(.failure(K.weather.error.missingCity))
-                default:
-                    return callback(.failure(K.weather.error.commonError))
+            guard let response = response as? HTTPURLResponse else { return }
+            switch (response.statusCode) {
+            case 200:
+                do {
+                    guard let data = data else { return }
+                    let weather = try JSONDecoder().decode(Weather.self, from: data)
+                    callback(.success(weather))
+                } catch {
+                    callback(.failure(K.weather.error.decodingError))
                 }
-            }
-
-            do {
-                guard let data = data else { return }
-                let weather = try JSONDecoder().decode(Weather.self, from: data)
-                callback(.success(weather))
-            } catch {
-                callback(.failure(K.weather.error.decodingError))
+            case 400:
+                return callback(.failure(K.weather.error.badRequest))
+            case 404:
+                return callback(.failure(K.weather.error.notFoundCity))
+            default:
+                return callback(.failure(K.weather.error.commonError))
             }
         }
         task.resume()

@@ -57,7 +57,7 @@ struct K {
             static let mainCity = "New York"
         }
         enum error:String,Error {
-            case missingCity = "Veuillez saisir une ville"
+            case badRequest = "Veuillez saisir une ville"
             case notFoundCity = "Ville introuvable"
             case commonError = "Une erreur est survenue"
             case decodingError = "Données incorrectes"
